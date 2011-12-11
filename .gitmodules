@@ -1,0 +1,3 @@
+[submodule "classes/twitter"]
+	path = classes/twitter
+	url = git://github.com/dg/twitter-php.git
