@@ -1,3 +1,6 @@
 [submodule "classes/twitter"]
 	path = classes/twitter
 	url = git://github.com/dg/twitter-php.git
+[submodule "classes/twitterOAuth"]
+	path = classes/twitterOAuth
+	url = git://github.com/abraham/twitteroauth.git
