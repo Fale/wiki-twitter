@@ -28,36 +28,39 @@ class Account
     public function add( $tweet )
     {
         $t = mysql_real_escape_string( $tweet );
-	$query = sprintf( "INSERT INTO `tweets`" 
-	    ."(`account`, `text`)" 
-	    ."VALUES" 
-	    ."('1','%s')", 
-	    mysql_real_escape_string($tweet) 
-	  ); 
+        $query = sprintf( "INSERT INTO `tweets`" 
+            ."(`account`, `text`)" 
+            ."VALUES" 
+            ."('1','%s')", 
+            mysql_real_escape_string($tweet) 
+        ); 
         $r = mysql_query( $query );
         if ( !$r )
             die( "Invalid query: " . mysql_error() );
 
     }
 
-    public function tweet()
+    public function tweet($test = 0)
     {
         $r = mysql_query( "SELECT * FROM tweets ORDER BY RAND() WHERE last='0000-00-00' LIMIT 1" );
-        if ( !$r )
+        if( !$r )
             die( "Invalid query: " . mysql_error() );
         $row = mysql_fetch_assoc( $r );
-        if ( !$row['ID'] > 0 )
-	{
-	    $r = mysql_query( "SELECT * FROM tweets ORDER BY last LIMIT 1" );
-	    if ( !$r )
-        	die( "Invalid query: " . mysql_error() );
+        if( !$row['ID'] > 0 )
+        {
+            $r = mysql_query( "SELECT * FROM tweets ORDER BY last LIMIT 1" );
+            if( !$r )
+                die( "Invalid query: " . mysql_error() );
             $row = mysql_fetch_assoc( $r );
-	}
-        $t = $this->twitter->send( utf8_encode( $row['text'] ) );
-        if ( $t != FALSE )
+        }
+        if( !$test )
+            $t = $this->twitter->send( utf8_encode( $row['text'] ) );
+        else
+            echo $row['text'];
+        if( $t != FALSE && !$test)
         {
             $r = mysql_query( "UPDATE tweets SET last=DATE(NOW()) WHERE ID=" . $row['ID'] );
-            if ( !$r )
+            if( !$r )
                 die( "Invalid query:" . mysql_error() );
         }
         return TRUE;
