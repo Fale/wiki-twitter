@@ -42,10 +42,17 @@ class Account
 
     public function tweet()
     {
-        $r = mysql_query( "SELECT * FROM tweets ORDER BY last" );
+        $r = mysql_query( "SELECT * FROM tweets ORDER BY RAND() WHERE last='0000-00-00' LIMIT 1" );
         if ( !$r )
             die( "Invalid query: " . mysql_error() );
         $row = mysql_fetch_assoc( $r );
+        if ( !$row['ID'] > 0 )
+	{
+	    $r = mysql_query( "SELECT * FROM tweets ORDER BY last LIMIT 1" );
+	    if ( !$r )
+        	die( "Invalid query: " . mysql_error() );
+            $row = mysql_fetch_assoc( $r );
+	}
         $t = $this->twitter->send( utf8_encode( $row['text'] ) );
         if ( $t != FALSE )
         {
