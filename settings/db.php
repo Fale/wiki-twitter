@@ -1,16 +1,16 @@
 <?php
 
 ### PRODUCTION ###
-/*$mysqlHost = "localhost";
-$mysqlUser = "wiki-twitter";
+$mysqlHost = "localhost";
+$mysqlUser = "wt";
 $mysqlPass = "c00f9dbd";
-$mysqlDb = "wiki-twitter_main";
- */
+$mysqlDb = "wt_main";
+
 
 ### DEVEL ###
-$mysqlHost = "localhost";
-$mysqlUser = "root";
-$mysqlPass = "c00f9dbd";
-$mysqlDb = "wiki-twitter";
+#$mysqlHost = "localhost";
+#$mysqlUser = "root";
+#$mysqlPass = "c00f9dbd";
+#$mysqlDb = "wiki-twitter";
 
 ?>

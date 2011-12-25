@@ -25,6 +25,21 @@ class Account
         $this->twitter = new Twitter( $twitterKey, $twitterSecret, $token, $secret );
     }
 
+    public function add( $tweet )
+    {
+        $t = mysql_real_escape_string( $tweet );
+	$query = sprintf( "INSERT INTO `tweets`" 
+	    ."(`account`, `text`)" 
+	    ."VALUES" 
+	    ."('1','%s')", 
+	    mysql_real_escape_string($tweet) 
+	  ); 
+        $r = mysql_query( $query );
+        if ( !$r )
+            die( "Invalid query: " . mysql_error() );
+
+    }
+
     public function tweet()
     {
         $r = mysql_query( "SELECT * FROM tweets ORDER BY last" );
@@ -34,7 +49,7 @@ class Account
         $t = $this->twitter->send( utf8_encode( $row['text'] ) );
         if ( $t != FALSE )
         {
-            $r = mysql_query( "UPDATE tweets SET last=DATE(NOW())" );
+            $r = mysql_query( "UPDATE tweets SET last=DATE(NOW()) WHERE ID=" . $row['ID'] );
             if ( !$r )
                 die( "Invalid query:" . mysql_error() );
         }
