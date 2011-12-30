@@ -100,13 +100,22 @@ function parse( $data, $string, $clean = 1 )
 $wiki = new extended;
 $wiki->url = 'http://it.wikipedia.org/w/api.php';
 
-/*$dati = new datiGeografici;
+$dati = new datiGeografici;
 $comuni = $dati->get_comuni( "Categoria:Comuni della provincia di Milano" );
 
+$mysqlHost = "localhost";
+$mysqlUser = "wt";
+$mysqlPass = "c00f9dbd";
+$mysqlDb = "wt_main";
+$db = mysql_connect( $mysqlHost, $mysqlUser, $mysqlPass );
+if ( !$db )
+    die( "Could not connect: " . mysql_error() );
+$db_selected = mysql_select_db( $mysqlDb, $db );
+if ( !$db_selected )
+    die ( "Can't use foo: " . mysql_error() );
+
 foreach( $comuni as $comune )
-*/
 {
-    $comune = "Abbiategrasso";
     $data = $wiki->gettemplate( $comune, "Divisione amministrativa" );
     $p['url'] = "http://it.wikipedia.org/wiki/" . $comune;
     $p['nome'] = parse( $data, "Nome" );
@@ -162,21 +171,13 @@ foreach( $comuni as $comune )
     foreach( $p as $k => $v )
         $q.= "`" . $k . "` = '" . mysql_escape_string( $v ) . "', ";
     $q = substr( $q, 0, -2 ) . ";";
-    echo $q;
 
-    $mysqlHost = "localhost";
-    $mysqlUser = "wt";
-    $mysqlPass = "c00f9dbd";
-    $mysqlDb = "wt_main";
-    $db = mysql_connect( $mysqlHost, $mysqlUser, $mysqlPass );
-    if ( !$db )
-        die( "Could not connect: " . mysql_error() );
-    $db_selected = mysql_select_db( $mysqlDb, $db );
-    if ( !$db_selected )
-        die ( "Can't use foo: " . mysql_error() );
     $r = mysql_query( $q );
     if( !$r )
         die( "Invalid query: " . mysql_error() );
 
 }
+
+mysql_close();
+
 ?>
