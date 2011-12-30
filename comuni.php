@@ -1,7 +1,7 @@
 <?php
 
 require_once( "classes/botclasses.php" );
-require_once( "classes/account.php" );
+require_once( "settings/account.php" );
 
 function clean( $data )
 {
