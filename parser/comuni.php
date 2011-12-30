@@ -161,7 +161,7 @@ foreach( $comuni as $comune )
     $q = "REPLACE INTO `amministrazioni` SET ";
     foreach( $p as $k => $v )
         $q.= "`" . $k . "` = '" . mysql_escape_string( $v ) . "', ";
-    $q = substr( $q, 0, -1 ) . ";";
+    $q = substr( $q, 0, -2 ) . ";";
     echo $q;
 
     $mysqlHost = "localhost";
