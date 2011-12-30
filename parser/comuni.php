@@ -82,6 +82,10 @@ function clean( $data )
                 $ok = $match[1];
             $data = str_replace( $match[0], $ok, $data );
         }
+    preg_match_all( "/\<\!--[^-]*--\>/", $data, $ms, PREG_SET_ORDER );
+    if( isset( $ms ) )
+        foreach( $ms as $m )
+            $data = str_replace( $m[0], "", $data );
     return $data;
 }
 
