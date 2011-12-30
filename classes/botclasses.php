@@ -896,9 +896,6 @@ class extended extends wikipedia
     {
         $data = $this->getpage( $page );
         $template = preg_quote( $template, " " );
-        //echo $template;
-        //preg_match_all("/{{" . $template . "[^}]*[{{[^}]*}}]*}}/i", $data, $matches);
-        //preg_match_all("/{{Divisione amministrativa(\|(?P<params>[^{]*?))?}}/i", $data, $matches );
         $r = "/{{" . $template . "(?:[^{}]*(?:{{[^}]*}})?)+(?:[^}]*}})?/i";
         preg_match_all( $r, $data, $matches );
         if( isset( $matches[0][0] ) )

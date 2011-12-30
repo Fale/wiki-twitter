@@ -1,6 +1,7 @@
 <?php
 
-require_once( "botclasses.php" );
+require_once( "classes/botclasses.php" );
+require_once( "classes/account.php" );
 
 class datiGeografici
 {
@@ -106,10 +107,6 @@ $wiki->url = 'http://it.wikipedia.org/w/api.php';
 
 $comuni = $wiki->whatusethetemplate( "Divisione amministrativa" );
 
-$mysqlHost = "localhost";
-$mysqlUser = "wt";
-$mysqlPass = "c00f9dbd";
-$mysqlDb = "wt_main";
 $db = mysql_connect( $mysqlHost, $mysqlUser, $mysqlPass );
 if ( !$db )
     die( "Could not connect: " . mysql_error() );
