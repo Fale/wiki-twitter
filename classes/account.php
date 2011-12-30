@@ -73,9 +73,8 @@ class Account
         if ( !$db )
             die( "Could not connect: " . mysql_error() );
         $db_selected = mysql_select_db( $mysqlDb, $db );
-        if ( !$db_selected ) {
+        if ( !$db_selected )
             die ( "Can't use foo: " . mysql_error() );
-        }
         return $db;
     }
 
