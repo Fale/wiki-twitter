@@ -104,8 +104,7 @@ function parse( $data, $string, $clean = 1 )
 $wiki = new extended;
 $wiki->url = 'http://it.wikipedia.org/w/api.php';
 
-$dati = new datiGeografici;
-$comuni = $dati->get_comuni( "Categoria:Comuni della provincia di Milano" );
+$comuni = $wiki->whatusethetemplate( "Divisione amministrativa" );
 
 $mysqlHost = "localhost";
 $mysqlUser = "wt";
@@ -179,9 +178,6 @@ foreach( $comuni as $comune )
     $r = mysql_query( $q );
     if( !$r )
         die( "Invalid query: " . mysql_error() );
-
 }
-
 mysql_close();
-
 ?>

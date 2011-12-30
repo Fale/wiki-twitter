@@ -297,6 +297,31 @@ class wikipedia {
     }
 
     /**
+     * Returns a list of pages that use the $template.
+     * @param $template the template we are intereste into
+     * @param $extra (defaults to null)
+     * @return array
+     **/
+    function whatusethetemplate ($template,$extra=null) {
+        $continue = '';
+        $pages = array();
+        while (true) {
+            $res = $this->query('?action=query&list=embeddedin&eititle=Template:'.urlencode($template).'&eilimit=500&format=php'.$continue.$extra);
+            if (isset($res['error'])) {
+                return false;
+            }
+            foreach ($res['query']['embeddedin'] as $x) {
+                $pages[] = $x['title'];
+            }
+            if (empty($res['query-continue']['embeddedin']['eicontinue'])) {
+                return $pages;
+            } else {
+                $continue = '&eicontinue='.urlencode($res['query-continue']['embeddedin']['eicontinue']);
+            }
+        }
+    }
+
+    /**
     * Returns a list of pages that include the image.
     * @param $image
     * @param $extra (defaults to null)
