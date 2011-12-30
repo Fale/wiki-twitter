@@ -42,7 +42,7 @@ class Account
 
     public function tweet($test = 0)
     {
-        $r = mysql_query( "SELECT * FROM tweets ORDER BY last, priority, RAND() LIMIT 1" );
+        $r = mysql_query( "SELECT * FROM tweets ORDER BY last, priority DESC, RAND() LIMIT 1" );
         if( !$r )
             die( "Invalid query: " . mysql_error() );
         $row = mysql_fetch_assoc( $r );
