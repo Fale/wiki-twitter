@@ -21,7 +21,7 @@ class Amministrazioni
     public function tAbitanti()
     {
         if( $this->array['grado'] == "3" )
-            return "Il #comune di #" . $this->array->nome . " conta " . $this->array->abitanti . " #abitanti.";
+            return "Il #comune di #" . $this->array['nome'] . " conta " . $this->array['abitanti'] . " #abitanti.";
     }
 }
 
