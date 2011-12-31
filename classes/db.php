@@ -7,7 +7,7 @@ class Db
 {
     private $db;
 
-    public function __construct( $account_ID )
+    public function __construct()
     {
         $this->db = $this->connect();
     }
