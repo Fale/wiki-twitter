@@ -10,7 +10,10 @@ class Amministrazioni
     public function __construct( $url )
     {
         $this->db = new Db();
-        $this->array = $this->db->query( "SELECT * FROM amministrazioni WHERE `url` = '$url'" );
+        if( $url != "RANDOM" )
+            $this->array = $this->db->query( "SELECT * FROM amministrazioni WHERE `url` = '$url'" );
+        else
+            $this->array = $this->db->query( "SELECT * FROM amministrazioni ORDER BY RAND() LIMIT 1" );
     }
 
     public function __destruct()
@@ -56,6 +59,6 @@ class Amministrazioni
 }
 
 $url = "http://it.wikipedia.org/wiki/" . "Milano";
-$a = new Amministrazioni( $url );
+$a = new Amministrazioni( "RANDOM" );
 print_r( $a->tAll() );
 ?>
