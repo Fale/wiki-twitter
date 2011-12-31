@@ -18,14 +18,44 @@ class Amministrazioni
         $this->db->close();
     }
 
+    public function incipit()
+    {
+        switch( $this->array['grado'] )
+        {
+            case "1":
+                return "La #regione";
+            case "2":
+                return "La #provincia di";
+            case "3":
+                return "Il #comune di";
+                break;
+            case "4":
+                break;
+            default:
+                die( "Wrong grado" );
+        }
+    }
+
+    public function tAll()
+    {
+        $a = Array();
+        array_push( $a, $this->tAbitanti() );
+        array_push( $a, $this->tSuperficie() );
+        return $a;
+    }
+
     public function tAbitanti()
     {
-        if( $this->array['grado'] == "3" )
-            return "Il #comune di #" . $this->array['nome'] . " conta " . $this->array['abitanti'] . " #abitanti.";
+        return $this->incipit() . " #" . $this->array['nome'] . " conta " . $this->array['abitanti'] . " #abitanti.";
+    }
+
+    public function tSuperficie()
+    {
+        return $this->incipit() . " #" . $this->array['nome'] . " si espande su " . $this->array['superficie'] . " #km².";
     }
 }
 
 $url = "http://it.wikipedia.org/wiki/" . "Milano";
 $a = new Amministrazioni( $url );
-echo $a->tAbitanti();
+print_r( $a->tAll() );
 ?>
