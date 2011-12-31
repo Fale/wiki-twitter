@@ -7,7 +7,7 @@ require_once( "settings/app.php" );
 ### CLASSES ###
 require_once( "classes/twitter/twitter.class.php" );
 
-class Account
+class Tweets
 {
     private $db;
     private $twitter;
