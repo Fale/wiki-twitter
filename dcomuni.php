@@ -3,37 +3,6 @@
 require_once( "classes/botclasses.php" );
 require_once( "settings/db.php" );
 
-function clean( $data )
-{
-    preg_match_all( "/\[\[([^\|\]]+)[\|]?([^\|\]]*)\]\]/", $data, $matches, PREG_SET_ORDER );
-    if( isset( $matches ) )
-        foreach( $matches as $match )
-        {
-            if( $match[2] )
-                $ok = $match[2];
-            else
-                $ok = $match[1];
-            $data = str_replace( $match[0], $ok, $data );
-        }
-    preg_match_all( "/\<\!--[^-]*--\>/", $data, $ms, PREG_SET_ORDER );
-    if( isset( $ms ) )
-        foreach( $ms as $m )
-            $data = str_replace( $m[0], "", $data );
-    return $data;
-}
-
-function parse( $data, $string, $clean = 1 )
-{
-    preg_match( "/\|" . $string . "=(.*)/i", $data, $matches );
-    if( isset( $matches[1] ) )
-        if( !$clean )
-            return $matches[1];
-        else
-            return clean( $matches[1] );
-    else
-        return NULL;
-}
-
 $wiki = new extended;
 $wiki->url = 'http://it.wikipedia.org/w/api.php';
 
