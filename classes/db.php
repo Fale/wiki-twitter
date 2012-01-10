@@ -20,6 +20,26 @@ class Db
         return mysql_fetch_assoc( $r );
     }
 
+    public function smartinsert( $array, $table, $key )
+    {
+        // Create the Query
+        $query = "INSERT INTO `$table` SET ";
+        foreach( $array as $k => $v )
+            $query .= "`" . $k . "` = '" . mysql_escape_string( $v ) . "', ";
+        $query = substr( $q, 0, -2 ) . ";";
+
+        $c = mysql_query( "SELECT * FROM $table WHERE `$key`='" . $array[$key] . "'" );
+        if( !$c )
+            die( "Invalid query: " . mysql_error() );
+        elseif ( !mysql_num_rows( $c ) )
+        {
+            $r = mysql_query( $query );
+            if( !$r )
+                die( "Invalid query: " . mysql_error() );
+        }
+        return mysql_affected_rows();
+    }
+
     public function connect()
     {
         global $mysqlHost, $mysqlUser, $mysqlPass, $mysqlDb;
