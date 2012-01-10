@@ -12,12 +12,6 @@ $comuni = $wiki->whatusethetemplate( "Divisione amministrativa" );
 foreach( $comuni as $comune )
 {
     $p['url'] = "http://it.wikipedia.org/wiki/" . $comune;
-
-
-
-    $r = mysql_query( $q );
-    if( !$r )
-        die( "Invalid query: " . mysql_error() );
+    $db->smartinsert( $p, "itwp_divamm", "url" );
 }
-mysql_close();
 ?>
