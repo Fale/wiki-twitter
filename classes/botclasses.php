@@ -168,17 +168,17 @@ class wikipedia {
         $this->url = $url;
         $this->ecTimestamp = null;
         if ($hu!==null)
-        	$this->http->setHTTPcreds($hu,$hp);
+            $this->http->setHTTPcreds($hu,$hp);
     }
 
     function __set($var,$val) {
-	switch($var) {
-  		case 'quiet':
-			$this->http->quiet=$val;
-     			break;
-   		default:
-     			echo "WARNING: Unknown variable ($var)!\n";
- 	}
+        switch($var) {
+            case 'quiet':
+                $this->http->quiet=$val;
+                break;
+            default:
+                echo "WARNING: Unknown variable ($var)!\n";
+        }
     }
 
     /**
