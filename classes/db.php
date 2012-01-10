@@ -36,5 +36,5 @@ class Db
     {
         mysql_close( $this->db );
     }
-} 
+}
 ?>

@@ -4,7 +4,7 @@ require_once( "botclasses.php" );
 class TemplateParser
 {
     private $w;
-    public $array;
+    protected $array;
     private $pages;
 
     public function __construct( $url )
