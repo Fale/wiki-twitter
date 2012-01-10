@@ -26,8 +26,8 @@ class Db
         $query = "INSERT INTO `$table` SET ";
         foreach( $array as $k => $v )
             $query .= "`" . $k . "` = '" . mysql_escape_string( $v ) . "', ";
-        $query = substr( $q, 0, -2 ) . ";";
-
+        $query = substr( $query, 0, -2 ) . ";";
+echo $query . "\n\n\n";
         $c = mysql_query( "SELECT * FROM $table WHERE `$key`='" . $array[$key] . "'" );
         if( !$c )
             die( "Invalid query: " . mysql_error() );
