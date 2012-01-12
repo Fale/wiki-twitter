@@ -14,47 +14,31 @@ class Db
 
     public function query( $q )
     {
-        $r = mysql_query( $q );
-        if( !$r )
-            die( "Invalid query: " . mysql_error() );
-        return mysql_fetch_assoc( $r );
+        $out = Array();
+        foreach ($this->db->query($q) as $row)
+            array_push( $out, $row );
+        return $out;
     }
 
     public function smartinsert( $array, $table, $key )
     {
-        // Create the Query
-        $query = "INSERT INTO `$table` SET ";
-        foreach( $array as $k => $v )
-            $query .= "`" . $k . "` = '" . mysql_escape_string( $v ) . "', ";
-        $query = substr( $q, 0, -2 ) . ";";
-
-        $c = mysql_query( "SELECT * FROM $table WHERE `$key`='" . $array[$key] . "'" );
+        $c = $this->db->exec( "SELECT * FROM $table WHERE `$key`='" . $array[$key] . "'" );
         if( !$c )
-            die( "Invalid query: " . mysql_error() );
-        elseif ( !mysql_num_rows( $c ) )
         {
-            $r = mysql_query( $query );
-            if( !$r )
-                die( "Invalid query: " . mysql_error() );
-        }
-        return mysql_affected_rows();
+            $query = "INSERT INTO `$table` SET ";
+            foreach( $array as $k => $v )
+                $query .= "`" . $k . "` = '" . $this->db->quote( $v ) . "', ";
+            $query = substr( $q, 0, -2 ) . ";";
+            return $this->db->exec( $query );
+        } else
+            return 0;
     }
 
     public function connect()
     {
         global $mysqlHost, $mysqlUser, $mysqlPass, $mysqlDb;
-        $db = mysql_connect( $mysqlHost, $mysqlUser, $mysqlPass );
-        if ( !$db )
-            die( "Could not connect: " . mysql_error() );
-        $db_selected = mysql_select_db( $mysqlDb, $db );
-        if ( !$db_selected )
-            die ( "Can't use foo: " . mysql_error() );
+        $db = new PDO("mysql:host=$mysqlHost;dbname=$mysqlDb", $mysqlUser, $mysqlPass);
         return $db;
-    }
-
-    public function close()
-    {
-        mysql_close( $this->db );
     }
 }
 ?>
