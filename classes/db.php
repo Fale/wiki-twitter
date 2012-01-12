@@ -28,7 +28,7 @@ class Db
             $query = "INSERT INTO `$table` SET ";
             foreach( $array as $k => $v )
                 $query .= "`" . $k . "` = '" . $this->db->quote( $v ) . "', ";
-            $query = substr( $q, 0, -2 ) . ";";
+            $query = substr( $query, 0, -2 ) . ";";
             return $this->db->exec( $query );
         } else
             return 0;
