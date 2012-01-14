@@ -22,14 +22,14 @@ class Db
 
     public function smartinsert( $array, $table, $key )
     {
-        $c = $this->db->exec( "SELECT * FROM $table WHERE `$key`='" . $array[$key] . "'" );
-        if( !$c )
+        $c = $this->db->query( "SELECT * FROM $table WHERE `$key`=" . $this->db->quote( $array[$key] ) . ";" );
+        if( !$c->fetchAll() )
         {
             $query = "INSERT INTO `$table` SET ";
             foreach( $array as $k => $v )
-                $query .= "`" . $k . "` = '" . $this->db->quote( $v ) . "', ";
+                $query .= "`" . $k . "` = " . $this->db->quote( $v ) . ", ";
             $query = substr( $query, 0, -2 ) . ";";
-            return $this->db->exec( $query );
+            return $this->db->query( $query );
         } else
             return 0;
     }
@@ -37,7 +37,9 @@ class Db
     public function connect()
     {
         global $mysqlHost, $mysqlUser, $mysqlPass, $mysqlDb;
-        $db = new PDO("mysql:host=$mysqlHost;dbname=$mysqlDb", $mysqlUser, $mysqlPass);
+        $db = new PDO( "mysql:host=$mysqlHost;dbname=$mysqlDb", $mysqlUser, $mysqlPass );
+	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+	$db->setAttribute( PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true );
         return $db;
     }
 }
