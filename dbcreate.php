@@ -11,11 +11,15 @@ $template = "Divisione amministrativa";
 
 $comuni = $wiki->whatusethetemplate( $template );
 $tpl = $db->query( "SELECT * FROM itwp_templates WHERE `template`='$template'" );
-print_r( $tpl );
-
+$tpl = $tpl[0];
 foreach( $comuni as $comune )
 {
     $p['url'] = "http://it.wikipedia.org/wiki/" . $comune;
-    echo $db->smartinsert( $p, "itwp_pages", "url" );
+    $r['page'] = $db->smartinsert( $p, "itwp_pages", "url" );
+    if( $r['page'] )
+    {
+	$r['template'] = $tpl['ID'];
+	$db->insert( $r, "itwp_relations" );
+    }
 }
 ?>
