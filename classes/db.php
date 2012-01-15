@@ -49,8 +49,8 @@ class Db
     {
         global $mysqlHost, $mysqlUser, $mysqlPass, $mysqlDb;
         $db = new PDO( "mysql:host=$mysqlHost;dbname=$mysqlDb", $mysqlUser, $mysqlPass );
-	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-	$db->setAttribute( PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true );
+        $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+        $db->setAttribute( PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true );
         return $db;
     }
 }
