@@ -15,9 +15,19 @@ class Db
     public function query( $q )
     {
         $out = Array();
-        foreach ($this->db->query($q) as $row)
+        foreach ($this->db->query( $q ) as $row)
             array_push( $out, $row );
         return $out;
+    }
+
+    public function insert( $array, $table )
+    {
+        $query = "INSERT INTO `$table` SET ";
+        foreach( $array as $k => $v )
+            $query .= "`" . $k . "` = " . $this->db->quote( $v ) . ", ";
+        $query = substr( $query, 0, -2 ) . ";";
+        $this->db->query( $query );
+	return $this->db->lastInsertId();
     }
 
     public function smartinsert( $array, $table, $key )
@@ -29,7 +39,8 @@ class Db
             foreach( $array as $k => $v )
                 $query .= "`" . $k . "` = " . $this->db->quote( $v ) . ", ";
             $query = substr( $query, 0, -2 ) . ";";
-            return $this->db->query( $query );
+            $this->db->query( $query );
+	    return $this->db->lastInsertId();
         } else
             return 0;
     }
