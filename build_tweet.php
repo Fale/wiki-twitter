@@ -11,6 +11,8 @@ $rows = $db->query( "SELECT * FROM itwp_pages ORDER BY RAND() LIMIT 10;");
 foreach( $rows as $row )
 {
     $da->getUrl( "Divisione amministrativa" , $row['url'] );
-    print_r( $da->tAll() );
+    $o = $da->tAll( $row['short'] );
+    if( $o )
+        print_r( $o );
 }
 ?>

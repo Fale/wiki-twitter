@@ -27,7 +27,7 @@ class TemplateParser
         $this->getPage( $template, $page );
     }
 
-    public function getPage( $template, $page = NULL )
+    public function getPage( $template, $page )
     {
         if( $page )
             $this->array = $this->parse( $this->w->gettemplate( $page, $template ) );

@@ -3,57 +3,100 @@ require_once( "templateparser.php" );
 
 class DivisioneAmministrativa extends TemplateParser
 {
+    private $data = Array (
+        "ITA" => Array(
+            1 => Array(
+                "grado" => "regione",
+                "gen" => "f",
+                "amm" => "presidente"
+            ),
+            2 => Array (
+                "grado" => "provincia",
+                "gen" => "f",
+                "amm" => "presidente"
+            ),
+            3 => Array (
+                "grado" => "comune",
+                "gen" => "m",
+                "amm" => "sindaco"
+            ),
+            "f" => "italiana",
+            "m" => "italiano"
+        )
+    );
+
+    public function nazionalita()
+    {
+        if( $this->data[$this->array['Stato']] )
+            switch( $this->data[$this->array['Stato']][$this->array['Grado amministrativo']]['gen'] )
+            {
+                case "f":
+                    return $this->data[$this->array['Stato']]['f'];
+                    break;
+                case "m":
+                    return $this->data[$this->array['Stato']]['m'];
+                    break;
+                default:
+                    die( "Nazionalità" );
+            }
+
+    }
+
     public function grado()
     {
-        if( $this->array['Stato'] == "ITA" )
-            switch( $this->array['Grado amministrativo'] )
+        if( $this->data[$this->array['Stato']] )
+            switch( $this->data[$this->array['Stato']][$this->array['Grado amministrativo']]['gen'] )
             {
-                case "1":
-                    return "una #regione";
-                case "2":
-                    return "una #provincia";
-                case "3":
-                    return "un #comune";
+                case "f":
+                    return "una #" . $this->data[$this->array['Stato']][$this->array['Grado amministrativo']]['grado'];
+                    break;
+                case "m":
+                    return "un #" . $this->data[$this->array['Stato']][$this->array['Grado amministrativo']]['grado'];
                     break;
                 default:
                     die( "Wrong grado" );
             }
     }
 
-    public function tAll()
+    public function tAll( $s )
     {
         $a = Array();
-        array_push( $a, $this->tAbitanti() );
-        array_push( $a, $this->tSuperficie() );
-        array_push( $a, $this->tPatrono() );
-        array_push( $a, $this->tZonaSismica() );
-        array_push( $a, $this->tNomeAbitanti() );
-        return $a;
+        array_push( $a, trim( $this->tAbitanti( $s ) ) );
+        array_push( $a, trim( $this->tSuperficie( $s ) ) );
+        array_push( $a, trim( $this->tPatrono( $s ) ) );
+        array_push( $a, trim( $this->tZonaSismica( $s ) ) );
+        array_push( $a, trim( $this->tNomeAbitanti( $s ) ) );
+        return array_filter( $a );
     }
 
-    public function tAbitanti()
+    public function tAbitanti( $s )
     {
-        return "#" . $this->array['Nome'] . " è " . $this->grado() . " di " . $this->array['Abitanti'] . " #abitanti.";
+        if( $this->array['Abitanti'] && $this->grado() && $this->nazionalita() )
+            return "#" . $this->array['Nome'] . " è " . $this->grado() . " #" . $this->nazionalita() . " di " . $this->array['Abitanti'] . " #abitanti. #sapevatelo $s";
     }
 
-    public function tNomeAbitanti()
+    public function tNomeAbitanti( $s )
     {
-        return "Gli abitanti di #" . $this->array['Nome'] . " vengono chiamati " . $this->array['Nome abitanti'] . ".";
+        if( $this->array['Nome abitanti'] )
+            return "Gli #abitanti di #" . $this->array['Nome'] . " vengono chiamati #" . $this->array['Nome abitanti'] . ". #sapevatelo $s";
     }
 
-    public function tZonaSismica()
+    public function tZonaSismica( $s )
     {
-        return "#" . $this->array['Nome'] . " è nella zona sismica " . $this->array['Zona sismica'] . ".";
+        if( $this->array['Zona sismica'] )
+            return "#" . $this->array['Nome'] . " è nella #zona #sismica " . $this->array['Zona sismica'] . ". #sapevatelo $s";
     }
 
-    public function tPatrono()
+    public function tPatrono( $s )
     {
-        return "Il santo patrono di #" . $this->array['Nome'] . " è " . $this->array['Patrono'] . ".";
+        if( $this->array['Patrono'] )
+            return "Il #santo #patrono di #" . $this->array['Nome'] . " è " . $this->array['Patrono'] . ". #sapevatelo $s";
     }
 
-    public function tSuperficie()
+    public function tSuperficie( $s )
     {
-        return "#" . $this->array['Nome'] . " è " . $this->grado() . " di " . $this->array['Superficie'] . " #km².";
+        if( $this->array['Superficie'] && $this->grado() && $this->nazionalita() )
+            return "#" . $this->array['Nome'] . " è " . $this->grado() . " #" . $this->nazionalita() . " di " . $this->array['Superficie'] . " #km². #sapevatelo $s";
     }
 }
 
