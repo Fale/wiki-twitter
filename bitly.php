@@ -14,5 +14,5 @@ foreach( $pages as $page )
     if( $r['short'] == "INVALID_LOGIN" || $r['short'] == "RATE_LIMIT_EXCEEDED" )
         die();
     $db->update( $r, "itwp_pages", "ID" );
-    usleep( 700000 );
+    usleep( 1000000 );
 }
