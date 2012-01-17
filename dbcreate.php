@@ -18,8 +18,8 @@ foreach( $comuni as $comune )
     $r['page'] = $db->smartinsert( $p, "itwp_pages", "url" );
     if( $r['page'] )
     {
-	$r['template'] = $tpl['ID'];
-	$db->insert( $r, "itwp_relations" );
+    $r['template'] = $tpl['ID'];
+    $db->insert( $r, "itwp_relations" );
     }
 }
 ?>
