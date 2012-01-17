@@ -4,6 +4,59 @@ require_once( "templateparser.php" );
 class DivisioneAmministrativa extends TemplateParser
 {
     private $data = Array (
+        "CHE" => Array (
+            1 => Array(
+                "grado" => "cantone",
+                "gen" => "m",
+                "amm" => "governo legislatore"
+            ),
+            2 => Array (
+                "grado" => "distretto",
+                "gen" => "m"
+            ),
+            3 => Array (
+                "grado" => "comune",
+                "gen" => "m",
+                "amm" => "sindaco"
+            ),
+            4 => Array (
+                "grado" => "frazione",
+                "gen" => "f"
+            ),
+            5 => Array (
+                "grado" => "quartiere",
+                "gen" => "m"
+            ),
+            "f" => "svizzera",
+            "m" => "svizzero"
+        ),
+        "FRA" => Array (
+            1 => Array (
+                "grado" => "regione",
+                "gen" => "f",
+                "amm" => "presidente"
+            ),
+            2 => Array (
+                "grado" => "dipartimento",
+                "gen" => "m",
+                "amm" => "presidente"
+            ),
+            3 => Array (
+                "grado" => "arrondissement",
+                "gen" => "m",
+            ),
+            4 => Array (
+                "grado" => "cantone",
+                "gen" => "m"
+            ),
+            5 => Array (
+                "grado" => "comune",
+                "gen" => "m",
+                "amm" => "sindaco"
+            ),
+            "f" => "francese",
+            "m" => "francese"
+        ),
         "ITA" => Array(
             1 => Array(
                 "grado" => "regione",
@@ -19,6 +72,10 @@ class DivisioneAmministrativa extends TemplateParser
                 "grado" => "comune",
                 "gen" => "m",
                 "amm" => "sindaco"
+            ),
+            4 => Array(
+                "grado" => "frazione",
+                "gen" => "f"
             ),
             "f" => "italiana",
             "m" => "italiano"
@@ -54,7 +111,7 @@ class DivisioneAmministrativa extends TemplateParser
                     return "un #" . $this->data[$this->array['Stato']][$this->array['Grado amministrativo']]['grado'];
                     break;
                 default:
-                    die( "Wrong grado" );
+                    die( "Wrong grado:" . $this->array['Grado amministrativo'] );
             }
     }
 
