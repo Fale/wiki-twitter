@@ -21,11 +21,16 @@ class TemplateParser
         $this->pages = $this->w->whatusethetemplate( $template );
     }
 
+    public function getUrl( $template, $url )
+    {
+        $page = str_replace( "http://it.wikipedia.org/wiki/", '', $url );
+        $this->getPage( $template, $page );
+    }
+
     public function getPage( $template, $page = NULL )
     {
         if( $page )
             $this->array = $this->parse( $this->w->gettemplate( $page, $template ) );
-        //else
     }
 
     public function clean( $data )
