@@ -115,7 +115,8 @@ class Db
         foreach( $array as $k => $v )
             $query .= "`" . $k . "` = " . $this->db->quote( $v ) . ", ";
         $query = substr( $query, 0, -2 ) . ";";
-        return $this->db->query( $query );
+        $this->singleQuery( $query );
+        return $this->db->lastInsertId();
     }
 
     /**
