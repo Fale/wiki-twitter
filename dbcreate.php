@@ -15,7 +15,7 @@ foreach( $tpls as $tpl )
     {
         $p['url'] = "http://it.wikipedia.org/wiki/" . $page;
         $r['page'] = $db->smartinsert( $p, "itwp_pages", "url" );
-        echo $r . "\n";
+        echo $p['url'] . " (" . $r['page'] . ")\n";
         if( $r['page'] )
         {
             $r['template'] = $tpl['ID'];
