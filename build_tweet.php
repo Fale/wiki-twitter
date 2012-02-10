@@ -11,21 +11,25 @@ $rows = $db->query( "SELECT ID, url, short FROM itwp_pages ORDER BY RAND() LIMIT
 $out = array();
 foreach( $rows as $row )
 {
-    $tpl = $db->query( "SELECT `template` FROM itwp_relations WHERE `page` = " . $row['ID'] );
-    $tpid = $tpl['0']['template'];
-    switch( $tpid )
+    if( $row['short'] )
     {
-        case 2:
-            $t = new DivisioneAmministrativa( $url );
-            break;
-        case 3:
-            $t = new Bio( $url );
-            break;
+        $tpl = $db->query( "SELECT `template` FROM itwp_relations WHERE `page` = " . $row['ID'] );
+        $tpid = $tpl['0']['template'];
+        switch( $tpid )
+        {
+            case 2:
+                $t = new DivisioneAmministrativa( $url );
+                break;
+            case 3:
+                $t = new Bio( $url );
+                break;
+        }
+        $t->getUrl( $tp[$tpid-1]['template'] , $row['url'] );
+        $o = $t->tAll( $row['short'] );
+        if( $o )
+            $out = array_merge( $out, $o );
     }
-    $t->getUrl( $tp[$tpid-1]['template'] , $row['url'] );
-    $o = $t->tAll( $row['short'] );
-    if( $o )
-        $out = array_merge( $out, $o );
 }
+//echo $out[array_rand( $out )] . "\n";
 print_r( $out );
 ?>
