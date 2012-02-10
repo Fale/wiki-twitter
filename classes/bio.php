@@ -31,32 +31,31 @@ class Bio extends TemplateParser
         elseif( $e )
             return " " . trim( $e );
     }
+
+    public function p( $field, $y = "", $n = "" )
+    {
+        if( $this->array[$field] )
+            return " " . trim( $y );
+        elseif( $n )
+            return " " . trim( $n );
+    }
     
     public function tBorn( $s )
     {
         if( $this->array['AnnoNascita'] )
-            if( $this->array['Sesso'] == "F" )
-                return $this->fullName() . " è nata" . $this->c( 'GiornoMeseNascita', "il ", "", "nel" ) . " #" . $this->array['AnnoNascita'] . $this->c( 'LuogoNascita', "a #" ) . ". #sapevatelo $s";
-            else
-                return $this->fullName() . " è nato" . $this->c( 'GiornoMeseNascita', "il ", "", "nel" ) . " #" . $this->array['AnnoNascita'] . $this->c( 'LuogoNascita', "a #" ) . ". #sapevatelo $s";
+            return $this->fullName() . " è nat" . ($this->array['Sesso'] == "F" ? "a":"o") . $this->c( 'GiornoMeseNascita', "il ", "", "nel" ) . " #" . $this->array['AnnoNascita'] . $this->c( 'LuogoNascita', "a #" ) . ". #sapevatelo $s";
     }
 
     public function tDie( $s )
     {
         if( $this->array['AnnoMorte'] )
-            if( $this->array['Sesso'] == "F" )
-                return $this->fullName() . " è morta" . $this->c( 'GiornoMeseMorte', "il ", "", "nel" ) . " #" . $this->array['AnnoMorte'] . $this->c( 'LuogoMorte', "a #" ) . ". #sapevatelo $s";
-            else
-                return $this->fullName() . " è morto" . $this->c( 'GiornoMeseMorte', "il ", "", "nel" ) . " #" . $this->array['AnnoMorte'] . $this->c( 'LuogoMorte', "a #" ) . ". #sapevatelo $s";
+            return $this->fullName() . " è mort" . ($this->array['Sesso'] == "F" ? "a":"o") . $this->c( 'GiornoMeseMorte', "il ", "", "nel" ) . " #" . $this->array['AnnoMorte'] . $this->c( 'LuogoMorte', "a #" ) . ". #sapevatelo $s";
     }
 
     public function tWork( $s )
     {
         if( $this->array['Attività'] )
-            if( $this->array['Sesso'] == "F" )
-                return $this->fullName() . " è una #" . $this->array['Attività'] . $this->c( 'Nazionalità', "#" ) . ". #sapevatelo $s";
-            else
-                return $this->fullName() . " è un #" . $this->array['Attività'] . $this->c( 'Nazionalità', "#" ) . ". #sapevatelo $s";
+            return $this->fullName() . $this->p( "AnnoMorte", "fu", "è" ) . " un" . ($this->array['Sesso'] == "F" ? "a":"") . " #" . $this->array['Attività'] . $this->c( 'Nazionalità', "#" ) . ". #sapevatelo $s";
     }
 }
 
