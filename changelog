@@ -1,0 +1,16 @@
+Version dev
+    * Only page reference in the db
+    * The system does pull the wiki-page content for each tweet
+    * Supports 2 templates:
+        * Divisione Amministrativa
+        * Bio
+    * Improved output for some tools
+    * Automatically pulls bitly urls
+
+Version 2.0 (never reached, ~ 02/01/2012)
+    * All template data in a DB
+
+Version 1.0 (25/12/2011)
+    * Initial version
+    * DB with all tweets
+    * DB needs to be populated by hand
