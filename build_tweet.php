@@ -8,7 +8,7 @@ $db = new Db;
 $url = "http://it.wikipedia.org/w/api.php";
 $tp = $db->query( "SELECT * FROM itwp_templates;" );
 $rows = $db->query( "SELECT ID, url, short FROM itwp_pages ORDER BY RAND() LIMIT 10;" );
-$out = array();
+$out = Array();
 foreach( $rows as $row )
 {
     if( $row['short'] )
@@ -31,5 +31,11 @@ foreach( $rows as $row )
     }
 }
 //echo $out[array_rand( $out )] . "\n";
-print_r( $out );
+$ok = Array();
+foreach( $out as $tw )
+{
+    if( strlen( $tw ) <= 140 )
+        array_push( $ok, $tw );
+}
+print_r( $ok );
 ?>
