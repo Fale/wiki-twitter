@@ -1,3 +1,16 @@
+ToDo List
+    * Limit tweets to 140 chars
+    * Create the option to force tweets
+    * Create a website
+    * Improve directories tree
+    * Support more itwp templates
+        * Libro
+        * Album
+        * Film
+    * Support for english wiki
+    * Topic-specific tweeter users
+    * Buy proper domains
+
 Version dev
     * Only page reference in the db
     * The system does pull the wiki-page content for each tweet
@@ -7,7 +20,7 @@ Version dev
     * Improved output for some tools
     * Automatically pulls bitly urls
 
-Version 2.0 (never reached, ~ 02/01/2012)
+Version 2.0 (never reached dropped in 02/01/2012)
     * All template data in a DB
 
 Version 1.0 (25/12/2011)
