@@ -15,6 +15,7 @@ ToDo List
 Version dev-4.x
 
 Version dev-3.x (expected 17/02/2012)
+    * Improve bitly script output
 
 Version 3.0 (10/02/2012)
     * Only page reference in the db
