@@ -9,8 +9,13 @@ ToDo List
     * Support for english wiki
     * Topic-specific tweeter users
     * Buy proper domains
+        * dyrki.* (?)
+    * Create endyrki for english related tweet
 
-Version dev
+Version dev (expected 17/02/2012)
+
+
+Version 3.0 (10/02/2012)
     * Only page reference in the db
     * The system does pull the wiki-page content for each tweet
     * Supports 2 templates:
@@ -19,6 +24,9 @@ Version dev
     * Improved output for some tools
     * Automatically pulls bitly urls
     * Limit tweets lenght to 140 characters
+    * Buy dyrki.it and dyrki.net
+    * Rename @wikipedia_it to @itdyrki
+    * Rename @wikipedia to @dyrki
 
 Version 2.0 (never reached dropped in 02/01/2012)
     * All template data in a DB
