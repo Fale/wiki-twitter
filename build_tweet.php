@@ -1,9 +1,16 @@
 <?php
+
+### SETTINGS ###
+require_once( "settings/app.php" );
+require_once( "settings/db.php" );
+
 ### CLASSES ###
 require_once( "classes/db.php" );
 require_once( "classes/tpltweet.php" );
 require_once( "classes/bio.php" );
 require_once( "classes/divisioneamministrativa.php" );
+require_once( "classes/twitter/twitter.class.php" );
+
 $db = new Db;
 $url = "http://it.wikipedia.org/w/api.php";
 $tp = $db->query( "SELECT * FROM itwp_templates;" );
@@ -30,12 +37,33 @@ foreach( $rows as $row )
             $out = array_merge( $out, $o );
     }
 }
-//echo $out[array_rand( $out )] . "\n";
+
 $ok = Array();
 foreach( $out as $tw )
 {
     if( strlen( $tw ) <= 140 )
         array_push( $ok, $tw );
 }
-print_r( $ok );
+
+//print_r( $ok );
+
+$db = mysql_connect( $mysqlHost, $mysqlUser, $mysqlPass );
+if ( !$db )
+    die( "Could not connect: " . mysql_error() );
+$db_selected = mysql_select_db( $mysqlDb, $db );
+if ( !$db_selected )
+    die ( "Can't use foo: " . mysql_error() );
+
+$r = mysql_query( "SELECT * FROM accounts WHERE ID=1", $db );
+if ( !$r )
+    die( "Invalid query: " . mysql_error() );
+$row = mysql_fetch_assoc( $r );
+$token = $row['token'];
+$secret = $row['secret'];
+
+$twitter = new Twitter( $twitterKey, $twitterSecret, $token, $secret );
+if( !$test )
+    $t = $twitter->send( $out[array_rand( $out )] );
+else
+    echo $out[array_rand( $out )] . "\n";
 ?>
