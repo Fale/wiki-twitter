@@ -48,6 +48,7 @@ class Bio extends TemplateParser
 
     public function tDie( $s )
     {
+        $this->array['AnnoMorte'] = str_replace( "?", "", $this->array['AnnoMorte'] );
         if( $this->array['AnnoMorte'] )
             return $this->fullName() . " è mort" . ($this->array['Sesso'] == "F" ? "a":"o") . $this->c( 'GiornoMeseMorte', "il ", "", "nel" ) . " #" . $this->array['AnnoMorte'] . $this->c( 'LuogoMorte', "a #" ) . ". #sapevatelo $s";
     }
