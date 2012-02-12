@@ -66,7 +66,7 @@ class Film extends TemplateParser
                 if( $m[1] && $m[2] )
                 {
                     $o = $m[1] . " ha #interpretato " . $m[2] . " nel #film " . $this->array['titoloitaliano'] . ". #sapevatelo $s";
-                    array_push( $out, trim( $o );
+                    array_push( $out, trim( $o ) );
                 }
             }
             return $out;
