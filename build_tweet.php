@@ -37,10 +37,13 @@ foreach( $rows as $row )
                 $t = new Film( $url );
                 break;
         }
-        $t->getUrl( $tp[$tpid-1]['template'] , $row['url'] );
-        $o = $t->tAll( $row['short'] );
-        if( $o )
-            $out = array_merge( $out, $o );
+        if( $t )
+        {
+            $t->getUrl( $tp[$tpid-1]['template'] , $row['url'] );
+            $o = $t->tAll( $row['short'] );
+            if( $o )
+                $out = array_merge( $out, $o );
+        }
     }
 }
 
