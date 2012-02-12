@@ -36,7 +36,7 @@ class Film extends TemplateParser
 
     public function tGenere( $s )
     {
-        return $this->array['titoloitaliano'] . " è un #film #" $this->array['genere'] . ". #sapevatelo $s";
+        return $this->array['titoloitaliano'] . " è un #film #" . $this->array['genere'] . ". #sapevatelo $s";
     }
 
     public function tDurata( $s )
@@ -51,6 +51,19 @@ class Film extends TemplateParser
                 return "I #registi del #film \"" . $this->array['titoloitaliano'] . "\" sono " . $this->array['regista'] . ". #sapevatelo $s";
             else
                 return "Il #regista del #film \"" . $this->array['titoloitaliano'] . "\" è " . $this->array['regista'] . ". #sapevatelo $s";
+    }
+
+    public function tAttori( $s )
+    {
+        if( $this->array['attori'] )
+        {
+            $attori = explode( "*", $this->array['attori'] );
+            foreach( $attori as $attore )
+            {
+                if( preg_match( "/\*(.*)" )
+                    echo "a";
+            }
+        }
     }
 }
 
