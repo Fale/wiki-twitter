@@ -47,7 +47,10 @@ class Film extends TemplateParser
     public function tRegista( $s )
     {
         if( $this->array['regista'] )
-            return "Il #regista del #film \"" . $this->array['titoloitaliano'] . "\" è " . $this->array['regista'] . ". #sapevatelo $s";
+            if( preg_match( "/,/i", $this->array['regista'] ) || preg_match( "/ e /i", $this->array['regista'] ) )
+                return "I #registi del #film \"" . $this->array['titoloitaliano'] . "\" sono " . $this->array['regista'] . ". #sapevatelo $s";
+            else
+                return "Il #regista del #film \"" . $this->array['titoloitaliano'] . "\" è " . $this->array['regista'] . ". #sapevatelo $s";
     }
 }
 
