@@ -68,7 +68,7 @@ class Film extends TemplateParser
             $attori = explode( "*", $this->array['attori'] );
             foreach( $attori as $attore )
             {
-                preg_match( "/\*(.*):(.*)", $attore, $m );
+                preg_match( "/\*(.*):(.*)/i", $attore, $m );
                 if( $m[1] && $m[2] )
                 {
                     $o = $m[1] . " ha #interpretato " . $m[2] . " nel #film " . $this->array['titoloitaliano'] . ". #sapevatelo $s";
