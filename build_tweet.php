@@ -11,7 +11,9 @@ require_once( "classes/bio.php" );
 require_once( "classes/film.php" );
 require_once( "classes/divisioneamministrativa.php" );
 require_once( "classes/twitter/twitter.class.php" );
+require_once( "classes/cli.php" );
 
+$args = Cli::parseArgs($_SERVER['argv']);
 $db = new Db;
 $url = "http://it.wikipedia.org/w/api.php";
 $tp = $db->query( "SELECT * FROM itwp_templates;" );
@@ -65,9 +67,14 @@ $row = mysql_fetch_assoc( $r );
 $token = $row['token'];
 $secret = $row['secret'];
 
-$twitter = new Twitter( $twitterKey, $twitterSecret, $token, $secret );
-if( !$test )
+if( $args['send'] )
+{
+    $twitter = new Twitter( $twitterKey, $twitterSecret, $token, $secret );
     $t = $twitter->send( $out[array_rand( $out )] );
+}
 else
+{
+    print_r( $out );
     echo $out[array_rand( $out )] . "\n";
+}
 ?>
