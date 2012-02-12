@@ -6,9 +6,10 @@ class Film extends TemplateParser
     public function tAll( $s )
     {
         $a = Array();
-        array_push( $a, trim( $this->tBorn( $s ) ) );
+        array_push( $a, trim( $this->tAnno( $s ) ) );
         array_push( $a, trim( $this->tGenere( $s ) ) );
         array_push( $a, trim( $this->tDurata( $s ) ) );
+        array_push( $a, trim( $this->tRegista( $s ) ) );
         return array_filter( $a );
     }
 
@@ -41,6 +42,12 @@ class Film extends TemplateParser
     public function tDurata( $s )
     {
         return "La #durata del #film \"" . $this->array['titoloitaliano'] . "\" è di #" . $this->array['durata'] . ". #sapevatelo $s";
+    }
+
+    public function tRegista( $s )
+    {
+        if( $this->array['regista'] )
+            return "Il #regista del #film \"" . $this->array['titoloitaliano'] . "\" è " . $this->array['regista'] . ". #sapevatelo $s";
     }
 }
 
