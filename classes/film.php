@@ -10,6 +10,7 @@ class Film extends TemplateParser
         array_push( $a, trim( $this->tGenere( $s ) ) );
         array_push( $a, trim( $this->tDurata( $s ) ) );
         array_push( $a, trim( $this->tRegista( $s ) ) );
+        array_merge( $a, $this->tAttori( $s ) );
         return array_filter( $a );
     }
 
@@ -57,12 +58,18 @@ class Film extends TemplateParser
     {
         if( $this->array['attori'] )
         {
+            $out = Array();
             $attori = explode( "*", $this->array['attori'] );
             foreach( $attori as $attore )
             {
-                if( preg_match( "/\*(.*)" ) )
-                    echo "a";
+                preg_match( "/\*(.*):(.*)", $attore, $m );
+                if( $m[1] && $m[2] )
+                {
+                    $o = $m[1] . " ha #interpretato " . $m[2] . " nel #film " . $this->array['titoloitaliano'] . ". #sapevatelo $s";
+                    array_push( $out, trim( $o );
+                }
             }
+            return $out;
         }
     }
 }
