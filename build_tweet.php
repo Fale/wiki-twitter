@@ -8,6 +8,7 @@ require_once( "settings/db.php" );
 require_once( "classes/db.php" );
 require_once( "classes/tpltweet.php" );
 require_once( "classes/bio.php" );
+require_once( "classes/film.php" );
 require_once( "classes/divisioneamministrativa.php" );
 require_once( "classes/twitter/twitter.class.php" );
 
@@ -29,6 +30,9 @@ foreach( $rows as $row )
                 break;
             case 3:
                 $t = new Bio( $url );
+                break;
+            case 4:
+                $t = new Film( $url );
                 break;
         }
         $t->getUrl( $tp[$tpid-1]['template'] , $row['url'] );
