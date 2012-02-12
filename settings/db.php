@@ -2,9 +2,9 @@
 
 ### PRODUCTION ###
 $mysqlHost = "localhost";
-$mysqlUser = "wt";
+$mysqlUser = "dyrki";
 $mysqlPass = "c00f9dbd";
-$mysqlDb = "wt_main";
+$mysqlDb = "dyrki_twitter";
 
 
 ### DEVEL ###
