@@ -60,7 +60,7 @@ class Film extends TemplateParser
             $attori = explode( "*", $this->array['attori'] );
             foreach( $attori as $attore )
             {
-                if( preg_match( "/\*(.*)" )
+                if( preg_match( "/\*(.*)" ) )
                     echo "a";
             }
         }
