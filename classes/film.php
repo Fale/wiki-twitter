@@ -5,13 +5,16 @@ class Film extends TemplateParser
 {
     public function tAll( $s )
     {
-        $a = Array();
-        array_push( $a, trim( $this->tAnno( $s ) ) );
-        array_push( $a, trim( $this->tGenere( $s ) ) );
-        array_push( $a, trim( $this->tDurata( $s ) ) );
-        array_push( $a, trim( $this->tRegista( $s ) ) );
-        array_merge( $a, $this->tAttori( $s ) );
-        return array_filter( $a );
+        if( $this->array['titoloitaliano'] )
+        {
+            $a = Array();
+            array_push( $a, trim( $this->tAnno( $s ) ) );
+            array_push( $a, trim( $this->tGenere( $s ) ) );
+            array_push( $a, trim( $this->tDurata( $s ) ) );
+            array_push( $a, trim( $this->tRegista( $s ) ) );
+            array_merge( $a, $this->tAttori( $s ) );
+            return array_filter( $a );
+        }
     }
 
     private function c( $field, $pre = "", $post = "", $e = "" )
@@ -32,17 +35,20 @@ class Film extends TemplateParser
     
     public function tAnno( $s )
     {
-        return $this->array['titoloitaliano'] . " è un #film del #" . $this->array['annousita'] . ". #sapevatelo $s";
+        if( $this->array['annouscita'] )
+            return "\"" . $this->array['titoloitaliano'] . "\" è un #film del #" . $this->array['annouscita'] . ". #sapevatelo $s";
     }
 
     public function tGenere( $s )
     {
-        return $this->array['titoloitaliano'] . " è un #film #" . $this->array['genere'] . ". #sapevatelo $s";
+        if( $this->array['genere'] )
+            return "\"" . $this->array['titoloitaliano'] . "\" è un #film #" . $this->array['genere'] . ". #sapevatelo $s";
     }
 
     public function tDurata( $s )
     {
-        return "La #durata del #film \"" . $this->array['titoloitaliano'] . "\" è di #" . $this->array['durata'] . ". #sapevatelo $s";
+        if( $this->array['durata'] )
+            return "La #durata del #film \"" . $this->array['titoloitaliano'] . "\" è di #" . $this->array['durata'] . ". #sapevatelo $s";
     }
 
     public function tRegista( $s )
