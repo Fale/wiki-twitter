@@ -11,7 +11,7 @@ $wiki->url = 'http://it.wikipedia.org/w/api.php';
 $db = new Db;
 
 if( $args['tpl'] )
-    $where = " WHERE `template` = " . $args['tpl'] . ";";
+    $where = " WHERE `template` = '" . $args['tpl'] . "';";
 else
     $where = ";";
 $tpls = $db->query( "SELECT * FROM itwp_templates" . $where );
