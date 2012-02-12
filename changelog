@@ -20,6 +20,7 @@ Version dev-3.x (expected 17/02/2012)
 	* Create the class for the Film template
 	* Fix the #? bug on DieYear
 	* Allow bitly to lock himself to prevent double bitly process
+	* Force a "--send=yes" value to really send the tweet
 
 Version 3.0 (10/02/2012)
     * Only page reference in the db
