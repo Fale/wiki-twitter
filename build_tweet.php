@@ -33,10 +33,10 @@ foreach( $rows as $row )
             case 3:
                 $t = new Bio( $url );
                 break;
-/*            case 4:
+            case 4:
                 $t = new Film( $url );
                 break;
-  */      }
+        }
         if( $t )
         {
             $t->getUrl( $tp[$tpid-1]['template'] , $row['url'] );
