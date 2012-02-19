@@ -27,16 +27,16 @@ foreach( $rows as $row )
         $tpid = $tpl['0']['template'];
         switch( $tpid )
         {
-            case 2:
+/*            case 2:
                 $t = new DivisioneAmministrativa( $url );
                 break;
             case 3:
                 $t = new Bio( $url );
                 break;
-/*            case 4:
+*/            case 4:
                 $t = new Film( $url );
                 break;
-  */      }
+        }
         if( $t )
         {
             $t->getUrl( $tp[$tpid-1]['template'] , $row['url'] );
