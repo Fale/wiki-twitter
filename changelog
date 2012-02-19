@@ -13,7 +13,7 @@ ToDo List
 
 Version dev-4.x
 
-Version dev-3.x (expected 17/02/2012)
+Version 3.1 (19/02/2012)
     * Improve bitly script output
 	* Remove sub modules
 	* Dbcreate now is able to work on a single template
@@ -22,6 +22,7 @@ Version dev-3.x (expected 17/02/2012)
 	* Allow bitly to lock himself to prevent double bitly process
 	* Force a "--send=yes" value to really send the tweet
 	* Fix the crush in case of not-handled template
+	* Bitly now supports UNKNOW_ERROR
 
 Version 3.0 (10/02/2012)
     * Only page reference in the db
