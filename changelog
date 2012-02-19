@@ -21,7 +21,7 @@ Version dev-3.x (expected 17/02/2012)
 	* Fix the #? bug on DieYear
 	* Allow bitly to lock himself to prevent double bitly process
 	* Force a "--send=yes" value to really send the tweet
-	* Fix the cruch in case of not-handled template
+	* Fix the crush in case of not-handled template
 
 Version 3.0 (10/02/2012)
     * Only page reference in the db
