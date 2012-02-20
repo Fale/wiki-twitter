@@ -6,9 +6,9 @@ require_once( "settings/db.php" );
 
 ### CLASSES ###
 require_once( "classes/db.php" );
-require_once( "classes/itwp/bio.php" );
-require_once( "classes/itwp/film.php" );
-require_once( "classes/itwp/divisioneamministrativa.php" );
+require_once( "classes/dyrki/itwp/bio.php" );
+require_once( "classes/dyrki/itwp/film.php" );
+require_once( "classes/dyrki/itwp/divisioneamministrativa.php" );
 require_once( "classes/twitter/twitter.class.php" );
 require_once( "classes/cli.php" );
 

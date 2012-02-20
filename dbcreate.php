@@ -1,6 +1,6 @@
 <?php
 
-require_once( "classes/botclasses.php" );
+require_once( "classes/wiki/botclasses.php" );
 require_once( "classes/db.php" );
 require_once( "classes/cli.php" );
 
