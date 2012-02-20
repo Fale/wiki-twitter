@@ -15,6 +15,9 @@ Version dev-4.x (expected 27/02/2012)
 	* Removed all files from 2.x
 	* Removed all unused files
 	* Create a folder in 'class' for each wiki
+	* Create a folder system in 'class' that will allow a shared library
+	* Remove test_tweet.php since it will no be used any longer
+	* Rename build_tweet.php in tweet.php
 
 Version 3.1 (19/02/2012)
 	* Improve bitly script output
