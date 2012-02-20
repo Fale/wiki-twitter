@@ -1,5 +1,5 @@
 <?php
-require_once( "templateparser.php" );
+require_once( "../templateparser.php" );
 
 class Bio extends TemplateParser
 {

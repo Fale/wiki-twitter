@@ -6,10 +6,9 @@ require_once( "settings/db.php" );
 
 ### CLASSES ###
 require_once( "classes/db.php" );
-require_once( "classes/tpltweet.php" );
-require_once( "classes/bio.php" );
-require_once( "classes/film.php" );
-require_once( "classes/divisioneamministrativa.php" );
+require_once( "classes/itwp/bio.php" );
+require_once( "classes/itwp/film.php" );
+require_once( "classes/itwp/divisioneamministrativa.php" );
 require_once( "classes/twitter/twitter.class.php" );
 require_once( "classes/cli.php" );
 
