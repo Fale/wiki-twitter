@@ -11,8 +11,6 @@ ToDo List
 	* Create endyrki for english related tweet
 
 Version dev-4.x (expected 27/02/2012)
-	* Removed all files from 1.x
-	* Removed all files from 2.x
 	* Removed all unused files
 	* Create a folder in 'class' for each wiki
 	* Create a folder system in 'class' that will allow a shared library
