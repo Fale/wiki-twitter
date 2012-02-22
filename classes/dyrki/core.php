@@ -1,5 +1,5 @@
 <?php
-class Source
+class Core
 {
     private structure = Array(
         1 => Array(
