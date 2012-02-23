@@ -21,8 +21,8 @@ class Dyrki
     {
         $this->db = new Db;
         $q = $this->db->query( "SELECT * FROM accounts WHERE `ID`='" . $id . "';" );
-        $this->prefix = $q['prefix'];
-        $this->url = $q['url'];
+        $this->prefix = $q['0']['prefix'];
+        $this->url = $q['0']['url'];
         $this->debug = $debug;
     }
     
