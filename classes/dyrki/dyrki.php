@@ -33,7 +33,7 @@ class Dyrki
         {
             if( $row['short'] )
             {
-                $tpl = $db->query( "SELECT `function` FROM " . $this->prefix . "_templates WHERE `ID` = (SELECT `template` FROM " . $this->prefix"_relations WHERE `page` = " . $row['ID'] . ");" );
+                $tpl = $db->query( "SELECT `function` FROM " . $this->prefix . "_templates WHERE `ID` = (SELECT `template` FROM " . $this->prefix . "_relations WHERE `page` = " . $row['ID'] . ");" );
                 print_r( $tpl );
             }
         }
