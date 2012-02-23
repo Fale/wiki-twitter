@@ -1,11 +1,12 @@
 <?php
 
+define( '__ROOT__', dirname( dirname( dirname( __FILE__ ) ) ) ); 
+echo __ROOT__;
 ### SETTINGS ###
-require_once( "../../settings/db.php" );
+require_once( __ROOT__ . "/settings/db.php" );
 
 ### CLASSES ###
-require_once( "core.php" );
-require_once( "../db.php" );
+require_once( __ROOT__ . "/classes/db.php" );
 
 class Dyrki
 {
