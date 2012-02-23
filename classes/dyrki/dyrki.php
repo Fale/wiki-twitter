@@ -20,7 +20,7 @@ class Dyrki
     public function __construct( $id, $debug = 0 )
     {
         $this->db = new Db;
-        $q = $this->db->query( "SELECT * FROM accounts WHERE `ID`='" . $id . "';" );
+        $q = $this->db->query( "SELECT * FROM accounts WHERE `ID` = '" . $id . "';" );
         $this->prefix = $q['0']['prefix'];
         $this->url = $q['0']['url'];
         $this->debug = $debug;
@@ -28,13 +28,13 @@ class Dyrki
     
     public function createTweets()
     {
-        $this->tpls = $this->db->query( "SELECT * FROM " . $this->prefix . "_templates WHERE `ID` = ( SELECT `ID_template` FROM relations WHERE `ID_account` = '" . $q['ID'] . "');" );
-        $pages = $this->db->query( "SELECT ID, url, short FROM "  . $this->prefix . "_pages WHERE `ID` = ( SELECT `page` FROM " . $this->prefix . "_relations ORDER BY RAND() LIMIT 10);" );
+        $this->tpls = $this->db->query( "SELECT * FROM " . $this->prefix . "_templates WHERE `ID` IN ( SELECT `ID_template` FROM relations WHERE `ID_account` = '" . $q['ID'] . "');" );
+        $pages = $this->db->query( "SELECT ID, url, short FROM "  . $this->prefix . "_pages WHERE `ID` IN ( SELECT `page` FROM " . $this->prefix . "_relations ORDER BY RAND() LIMIT 10);" );
         foreach( $pages as $row )
         {
             if( $row['short'] )
             {
-                $tpl = $db->query( "SELECT `function` FROM " . $this->prefix . "_templates WHERE `ID` = (SELECT `template` FROM " . $this->prefix . "_relations WHERE `page` = " . $row['ID'] . ");" );
+                $tpl = $db->query( "SELECT `function` FROM " . $this->prefix . "_templates WHERE `ID` IN (SELECT `template` FROM " . $this->prefix . "_relations WHERE `page` = " . $row['ID'] . ");" );
                 print_r( $tpl );
             }
         }
