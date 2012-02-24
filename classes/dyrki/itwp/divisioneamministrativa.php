@@ -1,5 +1,8 @@
 <?php
-require_once( "../../wiki/templateparser.php" );
+define( '__ROOT__', dirname( dirname( dirname( __FILE__ ) ) ) );
+echo __ROOT__;
+### CLASSES ###
+require_once( __ROOT__ . "/classes/wiki/templateparser.php" );
 
 class DivisioneAmministrativa extends TemplateParser
 {
