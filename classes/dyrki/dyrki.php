@@ -49,7 +49,7 @@ class Dyrki
                 {
                     $t = new $function( $this->apiurl );
                     $t->getUrl( $template, $row['url'] );
-                    $o = $t->tAll( $row['short'] );
+                    $o = $t->tAll( "http://bit.ly/" . $row['short'] );
                     if( $o )
                         $out = array_merge( $out, $o );
                 }
