@@ -24,7 +24,7 @@ class Dyrki
     public function __construct( $id, $debug = 0 )
     {
         $this->db = new Db;
-        $q = $this->db->query( "SELECT * FROM accounts WHERE `ID` = '" . $id . "';" );
+        $q = $this->db->query( "SELECT * FROM sources WHERE `ID_source` = ( SELECT `ID_source` FROM accounts WHERE `ID` = '" . $id . "');" );
         $this->id = $id;
         $this->prefix = $q['0']['prefix'];
         $this->apiurl = $q['0']['apiurl'];
