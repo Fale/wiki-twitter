@@ -10,7 +10,10 @@ require_once( "classes/cli.php" );
 
 $args = Cli::parseArgs($_SERVER['argv']);
 
-$dyrki = new Dyrki( "1" );
+if( ! $args['user'] )
+    die( "Uso: tweet.php --user=# [--send]\n" );
+
+$dyrki = new Dyrki( $args['user'] );
 $tweet = $dyrki->createTweets();
 
 if( $args['send'] )
