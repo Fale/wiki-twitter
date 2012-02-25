@@ -48,7 +48,7 @@ class Dyrki
                 if( $function )
                 {
                     $t = new $function( $this->apiurl );
-                    $t->getUrl( $template, $row['url'] );
+                    $t->getPage( $template, $row['url'] );
                     $o = $t->tAll( "http://bit.ly/" . $row['short'] );
                     if( $o )
                         $out = array_merge( $out, $o );
