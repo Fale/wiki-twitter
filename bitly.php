@@ -21,10 +21,11 @@ if( ( $pid = Cron::lock() ) !== FALSE )
             $item = $item + 1;
             echo "(" . $item . "/" . $items . ") " . $page['url'] . " (" . $page['ID'] . ") ";
             $r['ID'] = $page['ID'];
-            $r['short'] = $bitly->shorten( $page['url'] );
+            $r['short'] = $bitly->shorten( $source['url'] . $page['url'] );
             echo "\033[00;32m[ OK ]\033[00m\n";
             if( $r['short'] == "INVALID_LOGIN" || $r['short'] == "RATE_LIMIT_EXCEEDED" )
                 die();
+            $r['short'] = str_replace( "http://bit.ly/", '', $r['short'] );
             $db->update( $r, $p . "_pages", "ID" );
             usleep( 4 * 1000000 );
         }
