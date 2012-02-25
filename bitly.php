@@ -8,6 +8,7 @@ if( ( $pid = Cron::lock() ) !== FALSE )
     $db = new Db;
     $item = 0;
     $bitly = new Bitly( "o_247usnifoe", "R_bf87ec63f9a0a974df98cebebdcb7b8d");
+<<<<<<< HEAD
     $pages = $db->query( "
         SELECT *
         FROM itwp_pages
@@ -19,16 +20,35 @@ if( ( $pid = Cron::lock() ) !== FALSE )
         " );
     $items = count( $pages );
     foreach( $pages as $page )
+=======
+    $sources = $db->query( "SELECT * FROM sources" );
+    foreach( $sources as $source )
+>>>>>>> 49604a9542e16bda881f8c98c54bdebcc24b8c55
     {
-        $item = $item + 1;
-        echo "(" . $item . "/" . $items . ") " . $page['url'] . " (" . $page['ID'] . ") ";
-        $r['ID'] = $page['ID'];
-        $r['short'] = $bitly->shorten( $page['url'] );
+        $p = $source['prefix'];
+        echo $p . " ";
+        $pages = $db->query( "SELECT * FROM " . $p . "_pages WHERE short = '' OR short = 'INVALID_LOGIN' OR short = 'RATE_LIMIT_EXCEEDED'" );
         echo "\033[00;32m[ OK ]\033[00m\n";
+<<<<<<< HEAD
         if( $r['short'] == "INVALID_LOGIN" || $r['short'] == "RATE_LIMIT_EXCEEDED" || $r['short'] == "UNKNOWN_ERROR" )
             die();
         $db->update( $r, "itwp_pages", "ID" );
         usleep( 4 * 1000000 );
+=======
+        $items = count( $pages );
+        foreach( $pages as $page )
+        {
+            $item = $item + 1;
+            echo "(" . $item . "/" . $items . ") " . $page['url'] . " (" . $page['ID'] . ") ";
+            $r['ID'] = $page['ID'];
+            $r['short'] = $bitly->shorten( $page['url'] );
+            echo "\033[00;32m[ OK ]\033[00m\n";
+            if( $r['short'] == "INVALID_LOGIN" || $r['short'] == "RATE_LIMIT_EXCEEDED" )
+                die();
+            $db->update( $r, $p . "_pages", "ID" );
+            usleep( 4 * 1000000 );
+        }
+>>>>>>> 49604a9542e16bda881f8c98c54bdebcc24b8c55
     }
     Cron::unlock();
 }

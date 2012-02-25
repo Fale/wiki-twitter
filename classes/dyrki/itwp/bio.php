@@ -1,5 +1,7 @@
 <?php
-require_once( "templateparser.php" );
+define( '__ROOT__', dirname( dirname( dirname( __FILE__ ) ) ) );
+### CLASSES ###
+require_once( __ROOT__ . "/classes/wiki/templateparser.php" );
 
 class Bio extends TemplateParser
 {

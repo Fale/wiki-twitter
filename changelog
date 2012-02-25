@@ -1,20 +1,25 @@
 ToDo List
-    * Create the option to force tweets
-    * Create a website
-    * Improve directories tree
-    * Support more itwp templates
-        * Libro
-        * Album
-    * Support for english wiki
-    * Topic-specific tweeter users
-    * Buy proper domains
-        * dyrki.* (?)
-    * Create endyrki for english related tweet
+	* Create the option to force tweets
+	* Create a website
+	* Support more itwp templates
+		* Libro
+		* Album
+	* Support for english wiki
+	* Topic-specific tweeter users
+	* Buy proper domains
+		* dyrki.* (?)
+	* Create endyrki for english related tweet
 
-Version dev-4.x
+Version dev-4.x (expected 27/02/2012)
+	* Removed all unused files
+	* Create a folder in 'class' for each wiki
+	* Create a folder system in 'class' that will allow a shared library
+	* Remove test_tweet.php since it will no be used any longer
+	* Rename build_tweet.php in tweet.php
+	* Create a source class to be able to abstract from the actual source
 
-Version dev-3.x (expected 17/02/2012)
-    * Improve bitly script output
+Version 3.1 (19/02/2012)
+	* Improve bitly script output
 	* Remove sub modules
 	* Dbcreate now is able to work on a single template
 	* Create the class for the Film template
@@ -22,24 +27,25 @@ Version dev-3.x (expected 17/02/2012)
 	* Allow bitly to lock himself to prevent double bitly process
 	* Force a "--send=yes" value to really send the tweet
 	* Fix the crush in case of not-handled template
+	* Bitly now supports UNKNOW_ERROR
 
 Version 3.0 (10/02/2012)
-    * Only page reference in the db
-    * The system does pull the wiki-page content for each tweet
-    * Supports 2 templates:
-        * Divisione Amministrativa
-        * Bio
-    * Improved output for some tools
-    * Automatically pulls bitly urls
-    * Limit tweets lenght to 140 characters
-    * Buy dyrki.it and dyrki.net
-    * Rename @wikipedia_it to @itdyrki
-    * Rename @wikipedia to @dyrki
+	* Only page reference in the db
+	* The system does pull the wiki-page content for each tweet
+	* Supports 2 templates:
+		* Divisione Amministrativa
+		* Bio
+	* Improved output for some tools
+	* Automatically pulls bitly urls
+	* Limit tweets lenght to 140 characters
+	* Buy dyrki.it and dyrki.net
+	* Rename @wikipedia_it to @itdyrki
+	* Rename @wikipedia to @dyrki
 
 Version 2.0 (never reached dropped in 10/01/2012)
-    * All template data in a DB
+	* All template data in a DB
 
 Version 1.0 (25/12/2011)
-    * Initial version
-    * DB with all tweets
-    * DB needs to be populated by hand
+	* Initial version
+	* DB with all tweets
+	* DB needs to be populated by hand
