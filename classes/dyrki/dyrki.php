@@ -30,12 +30,12 @@ class Dyrki
         $this->apiurl = $q['0']['apiurl'];
         $this->url = $q['0']['url'];
         $this->debug = $debug;
+        $this->tpls = $this->db->query( "SELECT * FROM templates;" );
+        array_unshift( $this->tpls, "" );
     }
     
     public function createTweets()
     {
-        $this->tpls = $this->db->query( "SELECT * FROM templates;" );
-        array_unshift( $this->tpls, "" );
         $pages = $this->db->query( "SELECT ID, url, short FROM "  . $this->prefix . "_pages WHERE `ID` IN (SELECT * FROM (SELECT `page` FROM " . $this->prefix . "_relations WHERE `template` IN (SELECT `ID_template` FROM relations WHERE `ID_account` = '" . $this->id . "') ORDER BY RAND() LIMIT 10) alias);" );
         $out = Array();
         foreach( $pages as $row )
