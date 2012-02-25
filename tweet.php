@@ -21,5 +21,6 @@ if( $args['send'] )
 else
 {
     print_r( $tweet );
+    echo $tweet[array_rand( $tweet )] . "\n";
 }
 ?>
