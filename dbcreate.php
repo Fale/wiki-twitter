@@ -10,7 +10,6 @@ function pages( $args )
     $src = $db->query( "SELECT * FROM `sources` WHERE `ID_source` = '" . $args['source'] . "';" );
     $prefix = $src['0']['prefix'];
     $apiurl = $src['0']['apiurl'];
-    $url = $src['0']['url'];
     $wiki = new extended( $apiurl );
 
     if( $args['template'] )
@@ -24,7 +23,7 @@ function pages( $args )
         $pages = $wiki->whatusethetemplate( $tpl['template'] );
         foreach( $pages as $page )
         {
-            $p['url'] = $url . $page;
+            $p['url'] = $page;
             $r['page'] = $db->smartinsert( $p, $prefix . "_pages", "url" );
             echo $p['url'] . " (Tpl:" . $tpl['template'] . ") (ID:" . $r['page'] . ")\n";
             if( $r['page'] )
