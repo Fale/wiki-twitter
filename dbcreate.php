@@ -35,6 +35,11 @@ function pages( $args )
     }
 }
 
+function account( $args )
+{
+
+}
+
 $args = Cli::parseArgs($_SERVER['argv']);
 if( $args[0] == "pages" )
     if( !$args['source'] )
