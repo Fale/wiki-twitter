@@ -10,6 +10,10 @@ ToDo List
         * dyrki.* (?)
     * Create endyrki for english related tweet
 
+Version dev-4.1 (expected 26/02/2012)
+    * Change twitter library
+    * Create dbcreate.php account functions to enable new accounts
+
 Version 4.0 (25/02/2012)
     * Removed all unused files
     * Create a folder in 'class' for each wiki
