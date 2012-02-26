@@ -68,11 +68,9 @@ function access_token($twitter, $pin, $args) {
     } else {
         echo "There was an error communicating with Twitter. {$twitter->response['response']}" . PHP_EOL;
     }
-    var_dump($twitter);
-    die();
 }
 
-function account()
+function account( $args )
 {
     require_once( "classes/twitter/tmhOAuth.php" );
     require_once( "classes/twitter/tmhUtilities.php" );
