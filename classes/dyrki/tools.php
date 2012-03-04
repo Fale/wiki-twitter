@@ -50,13 +50,13 @@ class Tools
         $prefix = $src['0']['prefix'];
         $apiurl = $src['0']['apiurl'];
         $wiki = new extended( $apiurl );
-    
+        
         if( $args['template'] )
             $where = " AND `template` = '" . $args['template'] . "';";
         else
             $where = ";";
 
-        $tpls = $this->db->query( "SELECT * FROM templates WHERE `ID_source` = " . $args['source'] . $where );
+        $tpls = $this->db->query( "SELECT * FROM templates WHERE `ID_source` = '" . $args['source'] . "'" . $where );
         foreach( $tpls as $tpl )
         {
             $pages = $wiki->whatusethetemplate( $tpl['template'] );
