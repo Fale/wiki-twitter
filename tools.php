@@ -11,10 +11,11 @@ $tools = new Tools();
 $man = "Uso: php tools.php COMMAND [parameters]
     
 COMMANDS:
-  *acount                     create account
-  *follow                     follow user
-  *pages                      manage pages
-  *source                     add a source
+  account                   create account
+  follow                    follow user
+  pages                     manage pages
+  source add                add a source
+  template add              add a template
 ";
     
 switch( $args[0] )
@@ -38,10 +39,22 @@ switch( $args[0] )
             $tools->pages( $args );
         break;
     case "source":
-        if( !$args['prefix'] || !$args['url'] || !$args['apiurl'] )
-            die( "Uso: php tools.php source --prefix=PREFIX --url=URL --apiurl=APIURL\n" );
+        if( $args['1'] == "add" )
+            if( !$args['prefix'] || !$args['url'] || !$args['apiurl'] )
+                die( "Uso: php tools.php source add --prefix=PREFIX --url=URL --apiurl=APIURL\n" );
+            else
+                $tools->source( $args );
         else
-            $tools->source( $args );
+            die( "Uso: php tools.php source add --prefix=PREFIX --url=URL --apiurl=APIURL\n" );
+        break;
+    case "template":
+        if( $args['1'] == "add" )
+            if( !$args['template'] || !$args['function'] || !$args['source'] )
+                die( "Uso: php tools.php template add --template=TPL_NAME --function=FCT_NAME --source=SOURCE_ID\n" );
+            else
+                $tools->template( $args );
+        else
+            die( "Uso: php tools.php template add --template=TPL_NAME --function=FCT_NAME --source=SOURCE_ID\n" );
         break;
     default:
         die( $man );

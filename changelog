@@ -13,7 +13,9 @@ ToDo List
         * Composizione
         * Libro
         * Album
-    * Support for english wiki
+    * Support enwiki templates
+        * Infobox film
+        * Infobox television film
 
 Version dev-4.1 (expected 26/02/2012)
     * Change twitter library
@@ -22,6 +24,7 @@ Version dev-4.1 (expected 26/02/2012)
     * Rename dbcreate.php in tools.php
     * Add follow function to tools.php
     * Add add source function to tools.php
+    * Add add template function to tools.php
 
 Version 4.0 (25/02/2012)
     * Removed all unused files

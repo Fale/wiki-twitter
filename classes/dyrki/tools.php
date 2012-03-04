@@ -36,6 +36,14 @@ class Tools
         $r = $this->db->query( $relations );
     }
 
+    public function template( $args )
+    {
+        $r['template'] = $args['template'];
+        $r['function'] = $args['function'];
+        $r['ID_source'] = $args['source'];
+        $q = $this->db->insert( $r, "templates" );
+    }
+
     public function pages( $args )
     {
         $src = $this->db->query( "SELECT * FROM `sources` WHERE `ID_source` = '" . $args['source'] . "';" );
