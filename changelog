@@ -13,6 +13,8 @@ ToDo List
 Version dev-4.1 (expected 26/02/2012)
     * Change twitter library
     * Create dbcreate.php account functions to enable new accounts
+    * Create dyrki/tools.php class with dbcreate.php code
+    * Rename dbcreate.php in tools.php
 
 Version 4.0 (25/02/2012)
     * Removed all unused files
