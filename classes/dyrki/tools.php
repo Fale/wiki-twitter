@@ -6,9 +6,15 @@ require_once( "classes/cli.php" );
 
 class Tools
 {
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new Db;
+    }
+
     public function pages( $args )
     {
-        $db = new Db;
         $src = $db->query( "SELECT * FROM `sources` WHERE `ID_source` = '" . $args['source'] . "';" );
         $prefix = $src['0']['prefix'];
         $apiurl = $src['0']['apiurl'];
@@ -19,19 +25,19 @@ class Tools
         else
             $where = ";";
 
-        $tpls = $db->query( "SELECT * FROM templates WHERE `ID_source` = " . $args['source'] . $where );
+        $tpls = $this->db->query( "SELECT * FROM templates WHERE `ID_source` = " . $args['source'] . $where );
         foreach( $tpls as $tpl )
         {
             $pages = $wiki->whatusethetemplate( $tpl['template'] );
             foreach( $pages as $page )
             {
                 $p['url'] = $page;
-                $r['page'] = $db->smartinsert( $p, $prefix . "_pages", "url" );
+                $r['page'] = $this->db->smartinsert( $p, $prefix . "_pages", "url" );
                 echo $p['url'] . " (Tpl:" . $tpl['template'] . ") (ID:" . $r['page'] . ")\n";
                 if( $r['page'] )
                 {
                     $r['template'] = $tpl['ID'];
-                    $db->insert( $r, $prefix . "_relations" );
+                    $this->db->insert( $r, $prefix . "_relations" );
                 }
             }
         }
@@ -61,12 +67,11 @@ class Tools
         if( $code == 200 )
         {
             $oauth_creds = $twitter->extract_params($twitter->response['response']);
-            $db = new Db;
             $data['name'] = $oauth_creds['screen_name'];
             $data['token'] = $oauth_creds['oauth_token'];
             $data['secret'] = $oauth_creds['oauth_token_secret'];
             $data['ID_source'] = $args['source'];
-            $db->insert( $data, "accounts" );
+            $this->db->insert( $data, "accounts" );
             echo "User: " . $oauth_creds['screen_name'] . " Token: " . $oauth_creds['oauth_token'] . " Secret: " . $oauth_creds['oauth_token_secret'] . "\n";
         } else {
             echo "There was an error communicating with Twitter. {$twitter->response['response']}" . PHP_EOL;
@@ -84,9 +89,37 @@ class Tools
             'consumer_secret' => $twitterSecret,
         ) );
 
-        request_token( $twitter );
+        $this->request_token( $twitter );
         $pin = tmhUtilities::read_input( 'What was the Pin Code?: ' );
-        access_token( $twitter, $pin, $args );    
+        $this->access_token( $twitter, $pin, $args );    
+    }
+
+    public function follow( $args )
+    {
+        require_once( "classes/twitter/tmhOAuth.php" );
+        require_once( "classes/twitter/tmhUtilities.php" );
+        require_once( "settings/app.php" );
+
+        if( $args['1'] == "ALL" )
+            $users = $this->db->query( "SELECT `token`, `secret` FROM `accounts`;" );
+        else
+            $users = $this->db->query( "SELECT `token`, `secret` FROM `accounts` WHERE `name`='" . $args['1'] . "';" );
+        foreach( $users as $user )
+        {
+            $twitter = new tmhOAuth( Array( 
+                'consumer_key' => $twitterKey, 
+                'consumer_secret' => $twitterSecret, 
+                'user_token' => $user['token'],
+                'user_secret' => $user['secret']
+            ) );
+            $t = $twitter->request( 'POST', $twitter->url( '1/friendships/create' ), Array( 'screen_name' =>  $args['2'], 'follow' => TRUE ) );
+            if( $code == 200 )
+                echo "Done\n";
+            elseif( $code == 403 )
+                echo "Already Done\n";
+            else
+                echo "Something went wrong\n";
+        }
     }
 }
 ?>
