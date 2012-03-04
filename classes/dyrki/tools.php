@@ -102,6 +102,7 @@ class Tools
             $data['token'] = $oauth_creds['oauth_token'];
             $data['secret'] = $oauth_creds['oauth_token_secret'];
             $data['ID_source'] = $args['source'];
+            $data['auto-follow'] = $args['auto-follow'];
             $this->db->insert( $data, "accounts" );
             echo "User: " . $oauth_creds['screen_name'] . " Token: " . $oauth_creds['oauth_token'] . " Secret: " . $oauth_creds['oauth_token_secret'] . "\n";
         } else {
@@ -132,7 +133,7 @@ class Tools
         require_once( "settings/app.php" );
 
         if( $args['1'] == "ALL" )
-            $users = $this->db->query( "SELECT `token`, `secret` FROM `accounts`;" );
+            $users = $this->db->query( "SELECT `token`, `secret` FROM `accounts` WHERE `auto-follow` = 1;" );
         else
             $users = $this->db->query( "SELECT `token`, `secret` FROM `accounts` WHERE `name`='" . $args['1'] . "';" );
         foreach( $users as $user )

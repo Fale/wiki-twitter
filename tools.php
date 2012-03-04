@@ -41,11 +41,11 @@ switch( $args[0] )
     case "source":
         if( $args['1'] == "add" )
             if( !$args['prefix'] || !$args['url'] || !$args['apiurl'] )
-                die( "Uso: php tools.php source add --prefix=PREFIX --url=URL --apiurl=APIURL\n" );
+                die( "Uso: php tools.php source add --prefix=PREFIX --url=URL --apiurl=APIURL [--auto-follow]\n" );
             else
                 $tools->source( $args );
         else
-            die( "Uso: php tools.php source add --prefix=PREFIX --url=URL --apiurl=APIURL\n" );
+            die( "Uso: php tools.php source add --prefix=PREFIX --url=URL --apiurl=APIURL [--auto-follow]\n" );
         break;
     case "template":
         if( $args['1'] == "add" )
