@@ -8,6 +8,13 @@ require_once( "classes/dyrki/tools.php" );
 $args = Cli::parseArgs($_SERVER['argv']);
 $tools = new Tools();
 
+$man = "Uso: dbcreate COMMAND [parameters]
+    
+COMMANDS:
+  *pages                      manage pages
+  *acount                     create account
+";
+    
 switch( $args[0] )
 {
     case "pages":
@@ -22,6 +29,6 @@ switch( $args[0] )
         else 
             $tools->account( $args );
     default:
-        die( "Uso: dbcreate COMMAND [parameters]\nCOMMANDS:\n*pages\t\t\tmanage pages\n*acount\t\t\tcreate account\n" );
+        die( $man );
 }
 ?>
