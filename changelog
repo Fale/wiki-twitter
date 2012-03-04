@@ -1,21 +1,27 @@
 ToDo List
     * Create the option to force tweets
-    * Create a website
     * Support more itwp templates
+        * Infobox_nave
+        * Porto
+        * Linea traghetto
+        * Imbarcazione veneziana
+        * Barca a vela
+        * Museo
+        * Opera d'arte
+        * Manoscritto
+        * Edificio religioso
+        * Composizione
         * Libro
         * Album
     * Support for english wiki
-    * Topic-specific tweeter users
-    * Buy proper domains
-        * dyrki.* (?)
-    * Create endyrki for english related tweet
 
 Version dev-4.1 (expected 26/02/2012)
     * Change twitter library
     * Create dbcreate.php account functions to enable new accounts
     * Create dyrki/tools.php class with dbcreate.php code
     * Rename dbcreate.php in tools.php
-    * Add follow function to tool.php
+    * Add follow function to tools.php
+    * Add add source function to tools.php
 
 Version 4.0 (25/02/2012)
     * Removed all unused files

@@ -13,9 +13,32 @@ class Tools
         $this->db = new Db;
     }
 
+    public function source( $args )
+    {
+        $r['prefix'] = $args['prefix'];
+        $r['url'] = $args['url'];
+        $r['apiurl'] = $args['apiurl'];
+        $q = $this->db->insert( $r, "sources" );
+        $pages = "CREATE TABLE IF NOT EXISTS `" . $args['prefix'] . "_pages` (
+            `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+            `url` varchar(255) NOT NULL,
+            `short` varchar(10) NOT NULL,
+            PRIMARY KEY (`ID`)
+        ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+        $relations = "CREATE TABLE IF NOT EXISTS `" . $args['prefix'] . "_relations` (
+            `ID` int(8) unsigned NOT NULL AUTO_INCREMENT,
+            `page` int(8) unsigned NOT NULL,
+            `template` int(3) unsigned NOT NULL,
+            PRIMARY KEY (`ID`),
+            KEY `page` (`page`)
+        ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+        $p = $this->db->query( $pages );
+        $r = $this->db->query( $relations );
+    }
+
     public function pages( $args )
     {
-        $src = $db->query( "SELECT * FROM `sources` WHERE `ID_source` = '" . $args['source'] . "';" );
+        $src = $this->db->query( "SELECT * FROM `sources` WHERE `ID_source` = '" . $args['source'] . "';" );
         $prefix = $src['0']['prefix'];
         $apiurl = $src['0']['apiurl'];
         $wiki = new extended( $apiurl );

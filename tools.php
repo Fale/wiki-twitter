@@ -11,19 +11,14 @@ $tools = new Tools();
 $man = "Uso: php tools.php COMMAND [parameters]
     
 COMMANDS:
-  *pages                      manage pages
   *acount                     create account
   *follow                     follow user
+  *pages                      manage pages
+  *source                     add a source
 ";
     
 switch( $args[0] )
 {
-    case "pages":
-        if( !$args['source'] )
-            die( "Uso: php tools.php pages --source=# [--template]\n" );
-        else
-            $tools->pages( $args );
-        break;
     case "account":
         if( !$args['source'] )
             die( "Uso: php tools.php account --source=#\n" );
@@ -35,6 +30,18 @@ switch( $args[0] )
             die( "Uso: php tools.php follow USER_FOLLOWING USER_TO_FOLLOW\n" );
         else
             $tools->follow( $args );
+        break;
+    case "pages":
+        if( !$args['source'] )
+            die( "Uso: php tools.php pages --source=# [--template]\n" );
+        else
+            $tools->pages( $args );
+        break;
+    case "source":
+        if( !$args['prefix'] || !$args['url'] || !$args['apiurl'] )
+            die( "Uso: php tools.php source --prefix=PREFIX --url=URL --apiurl=APIURL\n" );
+        else
+            $tools->source( $args );
         break;
     default:
         die( $man );
