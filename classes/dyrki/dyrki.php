@@ -9,6 +9,7 @@ require_once( __ROOT__ . "/classes/db.php" );
 require_once( __ROOT__ . "/classes/dyrki/itwp/bio.php" );
 require_once( __ROOT__ . "/classes/dyrki/itwp/divisioneamministrativa.php" );
 require_once( __ROOT__ . "/classes/dyrki/itwp/film.php" );
+require_once( __ROOT__ . "/classes/dyrki/itwp/nave.php" );
 
 class Dyrki
 {
