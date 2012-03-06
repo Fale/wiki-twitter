@@ -31,7 +31,7 @@ class Nave extends TemplateParser
     public function tClasse( $s )
     {
         if( $this->array['Classe'])
-            return $this->array['Nome'] " è una nave di classe " . $this->array['Classe'] . ". #sapevatelo $s";
+            return $this->array['Nome'] . " è una nave di classe " . $this->array['Classe'] . ". #sapevatelo $s";
     }
 }
 
