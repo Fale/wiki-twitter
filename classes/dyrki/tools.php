@@ -67,8 +67,33 @@ class Tools
                 echo $p['url'] . " (Tpl:" . $tpl['template'] . ") (ID:" . $r['page'] . ")\n";
                 if( $r['page'] )
                 {
-                    $r['template'] = $tpl['ID'];
+                    $r['template'] = $tpl['ID_template'];
                     $this->db->insert( $r, $prefix . "_relations" );
+                }
+                else
+                {
+                    $rels = $this->db->query( " SELECT * FROM " . $prefix . "_relations WHERE `page` = ( SELECT ID FROM " . $prefix . "_pages WHERE `url` = '" . $p['url'] . "');" );
+                    if( $rels )
+                    {
+                        foreach( $rels as $rel )
+                            if( $rel['template'] == '0' )
+                            {
+                                $r['ID'] = $rel['ID'];
+                                $r['template'] = $tpl['ID_template'];
+                                $r['page'] = $rel['page'];
+                                $this->db->update( $r, $prefix . "_relations", "ID" );
+                                echo "f";
+                            }
+                    }
+                    else
+                    {
+                        $rel = $this->db->query( "SELECT ID FROM " . $prefix . "_pages WHERE `url` = '" . $p['url'] . "';" );
+                        $r['template'] = $tpl['ID_template'];
+                        $r['page'] = $rel['0']['ID'];
+                        $this->db->insert( $r, $prefix . "_relations" );
+                        echo "a";
+                    }
+
                 }
             }
         }
