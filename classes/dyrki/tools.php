@@ -133,9 +133,13 @@ class Tools
         require_once( "settings/app.php" );
 
         if( $args['1'] == "ALL" )
-            $users = $this->db->query( "SELECT `token`, `secret` FROM `accounts` WHERE `auto-follow` = 1;" );
+            $users = $this->db->query( "SELECT `name`, `token`, `secret` FROM `accounts` WHERE `auto-follow` = 1;" );
         else
-            $users = $this->db->query( "SELECT `token`, `secret` FROM `accounts` WHERE `name`='" . $args['1'] . "';" );
+            $users = $this->db->query( "SELECT `name`, `token`, `secret` FROM `accounts` WHERE `name`='" . $args['1'] . "';" );
+        if( $args['2'] == "ALL" )
+            $names = $this->db->query( "SELECT `name` FROM `accounts`;" );
+        else
+            $names = Array( 0 => Array( 'name' => $args['2'] ) );
         foreach( $users as $user )
         {
             $twitter = new tmhOAuth( Array( 
@@ -144,13 +148,17 @@ class Tools
                 'user_token' => $user['token'],
                 'user_secret' => $user['secret']
             ) );
-            $t = $twitter->request( 'POST', $twitter->url( '1/friendships/create' ), Array( 'screen_name' =>  $args['2'], 'follow' => TRUE ) );
-            if( $code == 200 )
-                echo "Done\n";
-            elseif( $code == 403 )
-                echo "Already Done\n";
-            else
-                echo "Something went wrong\n";
+            foreach( $names as $name )
+            {
+                $t = $twitter->request( 'POST', $twitter->url( '1/friendships/create' ), Array( 'screen_name' =>  $name['name'], 'follow' => TRUE ) );
+                echo $user['name'] . " will follow " . $name['name'] . " ";
+                if( $code == 200 )
+                    echo "Done\n";
+                elseif( $code == 403 )
+                    echo "Already Done\n";
+                else
+                    echo "Something went wrong\n";
+                }
         }
     }
 }
