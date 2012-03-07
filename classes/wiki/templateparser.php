@@ -24,13 +24,15 @@ class TemplateParser
     public function getUrl( $template, $url )
     {
         $page = str_replace( "http://it.wikipedia.org/wiki/", '', $url );
-        $this->getPage( $template, $page );
+        return $this->getPage( $template, $page );
     }
 
-    public function getPage( $template, $page )
+    public function getPage( $template, $page, $clean = 1 )
     {
-        if( $page )
-            $this->array = $this->parse( $this->w->gettemplate( $page, $template ) );
+        if( !$page )
+            die( 'No page selected' );
+        $this->array = $this->parse( $this->w->gettemplate( $page, $template ), $clean );
+        return $this->array;
     }
 
     public function clean( $data )
@@ -50,6 +52,10 @@ class TemplateParser
             foreach( $ms as $m )
                 $data = str_replace( $m[0], "", $data );
         preg_match_all( "/\<ref>[^\<]*\<\/ref\>/", $data, $ms, PREG_SET_ORDER );
+        if( isset( $ms ) )
+            foreach( $ms as $m )
+                $data = str_replace( $m[0], "", $data );
+        preg_match_all( "/\<br\[^\>]*>/", $data, $ms, PREG_SET_ORDER );
         if( isset( $ms ) )
             foreach( $ms as $m )
                 $data = str_replace( $m[0], "", $data );

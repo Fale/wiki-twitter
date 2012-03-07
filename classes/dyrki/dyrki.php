@@ -31,7 +31,7 @@ class Dyrki
         $this->apiurl = $q['0']['apiurl'];
         $this->url = $q['0']['url'];
         $this->debug = $debug;
-        $this->tpls = $this->db->query( "SELECT * FROM templates;" );
+        $this->tpls = $this->db->query( "SELECT * FROM templates WHERE `ID_source`= " . $q['0']['ID_source'] . ";" );
         array_unshift( $this->tpls, "" );
     }
     
