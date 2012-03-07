@@ -10,6 +10,7 @@ class Libro extends TemplateParser
         $a = Array();
         array_push( $a, trim( $this->tAutore( $s ) ) );
         array_push( $a, trim( $this->tAnno( $s ) ) );
+        array_push( $a, trim( $this->tGenere( $s ) ) );
         array_push( $a, trim( $this->tAnnoIta( $s ) ) );
         array_push( $a, trim( $this->tTipo( $s ) ) );
         return array_filter( $a );
@@ -74,6 +75,12 @@ class Libro extends TemplateParser
     {
         if( $this->array['Annoorig'] )
             return "\"" . $this->array['Titolo'] . "\" è un #libro del #" . $this->array['Annoorig'] . ". #sapevatelo $s";
+    }
+
+    public function tGenere( $s )
+    {
+        if( $this->array['Genere'] )
+            return "\"" . $this->array['Titolo'] . "\" è un" . ($this->array['Genere'] == "biografia" ? "a":"") . " #" . $this->array['Genere'] . ". #sapevatelo $s";
     }
 
     public function tAutore( $s )
