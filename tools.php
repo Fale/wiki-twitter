@@ -11,11 +11,18 @@ $tools = new Tools();
 $man = "Uso: php tools.php COMMAND [parameters]
     
 COMMANDS:
-  account                   create account
-  follow                    follow user
-  pages                     manage pages
+ -account                   create account
+ -follow                    follow user
+ -pages                     manage pages
+ *account add               add an account
+ *account list              list all accounts
+ *account follow            follow some user with a twitter account
   source add                add a source
+ *source list               list all sources
+ *source populate           populate with articles the pages table
   template add              add a template
+ *template list             list all templates
+ *template populate         populate with articles the pages table
 ";
     
 switch( $args[0] )
