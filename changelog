@@ -28,7 +28,7 @@ Version dev-4.1 (expected 26/02/2012)
     * itwp.nave add initial support
     * itwp.album add initial support
     * Fix a bug that was reducing the possible tweet considerably due to some inconsistences between CaSeS
-    * itwp.libro add initial support
+    * itwp.libro add support
 
 Version 4.0 (25/02/2012)
     * Removed all unused files

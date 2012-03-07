@@ -9,6 +9,8 @@ class Libro extends TemplateParser
     {
         $a = Array();
         array_push( $a, trim( $this->tAutore( $s ) ) );
+        array_push( $a, trim( $this->tAnno( $s ) ) );
+        array_push( $a, trim( $this->tAnnoIta( $s ) ) );
         array_push( $a, trim( $this->tTipo( $s ) ) );
         return array_filter( $a );
     }
@@ -33,28 +35,56 @@ class Libro extends TemplateParser
     {
         switch( $this->array['Tipo'] )
         {
-            case "giallo":
-                $o = " #";
+            case "per adulti":
+                $o = "#libro ";
+                $this->array['Tipo'] = "per #adulti";
+                break;
+            case "fantascienza":
+            case "Fantascienza":
+                $o = "#libro ";
+                $this->array['Tipo'] = "#fantascientifico";
+                break;
+            case "per ragazzi":
+                $o = "#libro ";
+                $this->array['Tipo'] = "per #ragazzi";
+                break;
+            case "orrore":
+                $o = "#libro dell'#";
+                break;
+            case "thriller":
+                $o = "#libro #";
                 break;
             case "saggio":
                 $o = " #";
                 break;
             default:
-                $o = "libro di #";
+                $o = "#libro di tipo #";
                 break;
         }
-        return $o . $this->array['Tipo'];
+        return " " . $o . $this->array['Tipo'];
+    }
+
+    public function tAnnoIta( $s )
+    {
+        if( $this->array['Annoita'] )
+            return "\"" . $this->array['Titolo'] . "\" è un #libro arrivato in #Italia nel #" . $this->array['Annoita'] . ". #sapevatelo $s";
+    }
+
+    public function tAnno( $s )
+    {
+        if( $this->array['Annoorig'] )
+            return "\"" . $this->array['Titolo'] . "\" è un #libro del #" . $this->array['Annoorig'] . ". #sapevatelo $s";
     }
 
     public function tAutore( $s )
     {
         if( $this->array['Autore'] )
-            return "\"" . $this->array['Titolo'] . "\" è un libro di #" . $this->array['Autore'] . ". #sapevatelo $s";
+            return "\"" . $this->array['Titolo'] . "\" è un #libro di #" . $this->array['Autore'] . ". #sapevatelo $s";
     }
 
     public function tTipo( $s )
     {
-        if( $this->array['Tipo'] )
+        if( $this->array['Tipo'] && $this->array['Tipo'] != "default" )
             return "\"" . $this->array['Titolo'] . "\" è un" . $this->tipo() . ". #sapevatelo $s";
     }
 }
