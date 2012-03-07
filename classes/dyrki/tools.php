@@ -172,7 +172,7 @@ class Tools
         else
             $users = $this->db->query( "SELECT `name`, `token`, `secret` FROM `accounts` WHERE `name`='" . $args['1'] . "';" );
         if( $args['2'] == "ALL" )
-            $names = $this->db->query( "SELECT `name` FROM `accounts`;" );
+            $names = $this->db->query( "SELECT `name` FROM `accounts` WHERE `auto-follow` = 1;" );
         else
             $names = Array( 0 => Array( 'name' => $args['2'] ) );
         foreach( $users as $user )
