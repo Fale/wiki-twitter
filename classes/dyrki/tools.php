@@ -62,7 +62,7 @@ class Tools
             $pages = $wiki->whatusethetemplate( $tpl['template'] );
             foreach( $pages as $page )
             {
-                $p['url'] = $page;
+                $p['url'] = mysql_escape_string( $page );
                 $r['page'] = $this->db->smartinsert( $p, $prefix . "_pages", "url" );
                 echo $p['url'] . " (Tpl:" . $tpl['template'] . ") (ID:" . $r['page'] . ")\n";
                 if( $r['page'] )
@@ -76,20 +76,30 @@ class Tools
                     if( $rels )
                     {
                         foreach( $rels as $rel )
+                        {
                             if( $rel['template'] == '0' )
                             {
                                 $r['ID'] = $rel['ID'];
                                 $r['template'] = $tpl['ID_template'];
-                                $r['page'] = $rel['page'];
+                                $r['page'] = mysql_escape_string( $rel['page'] );
                                 $this->db->update( $r, $prefix . "_relations", "ID" );
                                 echo "f";
                             }
+                            elseif( $rel['template'] != $tpl['ID_template'] )
+                            {
+                                $re = $this->db->query( "SELECT ID FROM " . $prefix . "_pages WHERE `url` = '" . $p['url'] . "';" );
+                                $r['template'] = $tpl['ID_template'];
+                                $r['page'] = $re['0']['ID'];
+                                $this->db->insert( $r, $prefix . "_relations" );
+                                echo "a";
+                            }
+                        }
                     }
                     else
                     {
-                        $rel = $this->db->query( "SELECT ID FROM " . $prefix . "_pages WHERE `url` = '" . $p['url'] . "';" );
+                        $re = $this->db->query( "SELECT ID FROM " . $prefix . "_pages WHERE `url` = '" . $p['url'] . "';" );
                         $r['template'] = $tpl['ID_template'];
-                        $r['page'] = $rel['0']['ID'];
+                        $r['page'] = $re['0']['ID'];
                         $this->db->insert( $r, $prefix . "_relations" );
                         echo "a";
                     }
