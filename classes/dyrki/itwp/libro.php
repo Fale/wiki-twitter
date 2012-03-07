@@ -9,6 +9,7 @@ class Libro extends TemplateParser
     {
         $a = Array();
         array_push( $a, trim( $this->tAutore( $s ) ) );
+        array_push( $a, trim( $this->tTipo( $s ) ) );
         return array_filter( $a );
     }
 
@@ -27,11 +28,34 @@ class Libro extends TemplateParser
         elseif( $n )
             return " " . trim( $n );
     }
-    
+
+    public function tipo()
+    {
+        switch( $this->array['Tipo'] )
+        {
+            case "giallo":
+                $o = " #";
+                break;
+            case "saggio":
+                $o = " #";
+                break;
+            default:
+                $o = "libro di #";
+                break;
+        }
+        return $o . $this->array['Tipo'];
+    }
+
     public function tAutore( $s )
     {
         if( $this->array['Autore'] )
             return "\"" . $this->array['Titolo'] . "\" è un libro di #" . $this->array['Autore'] . ". #sapevatelo $s";
+    }
+
+    public function tTipo( $s )
+    {
+        if( $this->array['Tipo'] )
+            return "\"" . $this->array['Titolo'] . "\" è un" . $this->tipo() . ". #sapevatelo $s";
     }
 }
 
