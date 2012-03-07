@@ -21,14 +21,14 @@ Version dev-4.1 (expected 26/02/2012)
     * Change twitter library
     * Create dbcreate.php account functions to enable new accounts
     * Create dyrki/tools.php class with dbcreate.php code
-    * Rename dbcreate.php in tools.php
-    * Add follow function to tools.php
-    * Add add source function to tools.php
-    * Add add template function to tools.php
-    * Add nave template initial support for itwp
-    * Add album template initial support for itwp
+    * tools rename dbcreate.php
+    * tools add follow function
+    * tools add add source function
+    * tools add add template function
+    * itwp.nave add initial support
+    * itwp.album add initial support
     * Fix a bug that was reducing the possible tweet considerably due to some inconsistences between CaSeS
-    * Add libro template initial support for itwp
+    * itwp.libro add initial support
 
 Version 4.0 (25/02/2012)
     * Removed all unused files
