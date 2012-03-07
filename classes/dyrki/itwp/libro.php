@@ -10,7 +10,8 @@ class Libro extends TemplateParser
         $a = Array();
         array_push( $a, trim( $this->tAutore( $s ) ) );
         array_push( $a, trim( $this->tAnno( $s ) ) );
-        array_push( $a, trim( $this->tGenere( $s ) ) );
+        // Not yet stable
+        //array_push( $a, trim( $this->tGenere( $s ) ) );
         array_push( $a, trim( $this->tAnnoIta( $s ) ) );
         array_push( $a, trim( $this->tTipo( $s ) ) );
         return array_filter( $a );
@@ -34,14 +35,13 @@ class Libro extends TemplateParser
 
     public function tipo()
     {
-        switch( $this->array['Tipo'] )
+        switch( strtolower( $this->array['Tipo'] ) )
         {
             case "per adulti":
                 $o = "#libro ";
                 $this->array['Tipo'] = "per #adulti";
                 break;
             case "fantascienza":
-            case "Fantascienza":
                 $o = "#libro ";
                 $this->array['Tipo'] = "#fantascientifico";
                 break;
@@ -80,7 +80,7 @@ class Libro extends TemplateParser
     public function tGenere( $s )
     {
         if( $this->array['Genere'] )
-            return "\"" . $this->array['Titolo'] . "\" è un" . ($this->array['Genere'] == "biografia" ? "a":"") . " #" . $this->array['Genere'] . ". #sapevatelo $s";
+            return "\"" . $this->array['Titolo'] . "\" è un" . (strtolower($this->array['Genere']) == "biografia" ? "a":"") . " #" . strtolower( $this->array['Genere'] ) . ". #sapevatelo $s";
     }
 
     public function tAutore( $s )
