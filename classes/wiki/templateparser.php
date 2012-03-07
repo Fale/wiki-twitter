@@ -69,9 +69,9 @@ class TemplateParser
         foreach( $matches as $match )
         {
             if( $clean )
-                $this->array[trim( $match[1] )] = trim( $this->clean( $match[2] ) );
+                $this->array[ucfirst( strtolower( trim( $match[1] ) ) )] = trim( $this->clean( $match[2] ) );
             else
-                $this->array[trim( $match[1] )] = trim( $match[2] );
+                $this->array[ucfirst( strtolower( trim( $match[1] ) ) )] = trim( $match[2] );
         }
         return $this->array;
     }

@@ -27,6 +27,7 @@ Version dev-4.1 (expected 26/02/2012)
     * Add add template function to tools.php
     * Add nave template initial support for itwp
     * Add album template initial support for itwp
+    * Fix a bug that was reducing the possible tweet considerably due to some inconsistences between CaSeS
 
 Version 4.0 (25/02/2012)
     * Removed all unused files
