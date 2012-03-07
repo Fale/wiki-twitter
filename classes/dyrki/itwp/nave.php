@@ -10,6 +10,7 @@ class Nave extends TemplateParser
         $a = Array();
         array_push( $a, trim( $this->tClasse( $s ) ) );
         array_push( $a, trim( $this->tOperatore( $s ) ) );
+        array_push( $a, trim( $this->tTipo( $s ) ) );
         return array_filter( $a );
     }
 
@@ -29,6 +30,12 @@ class Nave extends TemplateParser
             return " " . trim( $n );
     }
     
+    public function tTipo( $s )
+    {
+        if( $this->array['Tipo'] )
+            return $this->array['Nome'] . " è una " . $this->array['Tipo'] . ". #sapevatelo $s";
+    }
+
     public function tOperatore( $s )
     {
         if( $this->array['Operatore'] )
