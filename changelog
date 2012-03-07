@@ -17,7 +17,9 @@ ToDo List
         * Infobox film
         * Infobox television film
 
-Version dev-4.1 (expected 26/02/2012)
+Version dev-4.2 (expected 15/03/2012)
+
+Version 4.1 (07/03/2012)
     * Change twitter library
     * Create dbcreate.php account functions to enable new accounts
     * Create dyrki/tools.php class with dbcreate.php code
