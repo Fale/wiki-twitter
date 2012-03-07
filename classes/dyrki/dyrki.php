@@ -6,6 +6,7 @@ require_once( __ROOT__ . "/settings/db.php" );
 
 ### CLASSES ###
 require_once( __ROOT__ . "/classes/db.php" );
+require_once( __ROOT__ . "/classes/dyrki/itwp/album.php" );
 require_once( __ROOT__ . "/classes/dyrki/itwp/bio.php" );
 require_once( __ROOT__ . "/classes/dyrki/itwp/divisioneamministrativa.php" );
 require_once( __ROOT__ . "/classes/dyrki/itwp/film.php" );
