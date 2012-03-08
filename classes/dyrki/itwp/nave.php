@@ -14,22 +14,6 @@ class Nave extends TemplateParser
         return array_filter( $a );
     }
 
-    private function c( $field, $pre = "", $post = "", $e = "" )
-    {
-        if( $this->array[$field] )
-            return " " . trim( $pre . $this->array[$field] . $post );
-        elseif( $e )
-            return " " . trim( $e );
-    }
-
-    public function p( $field, $y = "", $n = "" )
-    {
-        if( $this->array[$field] )
-            return " " . trim( $y );
-        elseif( $n )
-            return " " . trim( $n );
-    }
-    
     public function tTipo( $s )
     {
         if( $this->array['Tipo'] )
