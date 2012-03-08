@@ -16,7 +16,7 @@ class OperaArte extends TemplateParser
         return array_filter( $a );
     }
 
-    public function tOpera( $s )
+    public function tMateriale( $s )
     {
         if( $this->array['Materiale'] )
             return "\"" . $this->array['Titolo'] . "\" è una scultura di #" . $this->array['Materiale'] . ". #sapevatelo $s";
