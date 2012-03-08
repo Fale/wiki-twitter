@@ -12,14 +12,21 @@ class OperaArte extends TemplateParser
         {
             array_push( $a, trim( $this->tArtista( $s ) ) );
             array_push( $a, trim( $this->tMateriale( $s ) ) );
+            array_push( $a, trim( $this->tTecnica( $s ) ) );
         }
         return array_filter( $a );
+    }
+
+    public function tTecnica( $s )
+    {
+        if( $this->array['Tecnica'] )
+            return "\"" . $this->array['Titolo'] . "\" è un dipinto #" . $this->array['Tecnica'] . ". #sapevatelo $s";
     }
 
     public function tMateriale( $s )
     {
         if( $this->array['Materiale'] )
-            return "\"" . $this->array['Titolo'] . "\" è una scultura di #" . $this->array['Materiale'] . ". #sapevatelo $s";
+            return "\"" . $this->array['Titolo'] . "\" è una scultura in #" . $this->array['Materiale'] . ". #sapevatelo $s";
     }
 
     public function tArtista( $s )
