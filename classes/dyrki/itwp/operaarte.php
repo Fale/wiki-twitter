@@ -10,15 +10,22 @@ class OperaArte extends TemplateParser
         $a = Array();
         if( $this->array['Titolo'] )
         {
-            array_push( $a, trim( $this->tAutore( $s ) ) );
+            array_push( $a, trim( $this->tArtista( $s ) ) );
+            array_push( $a, trim( $this->tMateriale( $s ) ) );
         }
         return array_filter( $a );
     }
 
-    public function tAutore( $s )
+    public function tOpera( $s )
     {
-        if( $this->array['Autore'] )
-            return "\"" . $this->array['Titolo'] . "\" è un'opera d'Arte di #" . $this->array['Autore'] . ". #sapevatelo $s";
+        if( $this->array['Materiale'] )
+            return "\"" . $this->array['Titolo'] . "\" è una scultura di #" . $this->array['Materiale'] . ". #sapevatelo $s";
+    }
+
+    public function tArtista( $s )
+    {
+        if( $this->array['Artista'] )
+            return "\"" . $this->array['Titolo'] . "\" è un'opera d'Arte di #" . $this->array['Artista'] . ". #sapevatelo $s";
     }
 }
 ?>
