@@ -14,11 +14,11 @@ require_once( "classes/db.php" );
 $args = Cli::parseArgs($_SERVER['argv']);
 
 if( ! $args['user'] )
-    die( "Uso: tweet.php --user=# [--send]\n" );
+    die( "Uso: tweet.php --user=# [--devel=#] [--send]\n" );
 
 $dyrki = new Dyrki( $args['user'] );
 $db = new Db();
-$tweet = $dyrki->createTweets();
+$tweet = $dyrki->createTweets( $args['devel'] );
 $tdata = $db->query( "SELECT * FROM accounts WHERE `ID` = " . $args['user'] . ";" );
 if( $args['send'] )
 {

@@ -38,7 +38,7 @@ class Dyrki
         array_unshift( $this->tpls, "" );
     }
     
-    public function createTweets()
+    public function createTweets( $devel = 0 )
     {
         $pages = $this->db->query( "SELECT * FROM "  . $this->prefix . "_pages WHERE `ID` IN (SELECT * FROM (SELECT `page` FROM " . $this->prefix . "_relations WHERE `template` IN (SELECT `ID_template` FROM relations WHERE `ID_account` = '" . $this->id . "') ORDER BY RAND() LIMIT 10) alias);" );
         $out = Array();
@@ -51,7 +51,7 @@ class Dyrki
                 $template = $this->tpls[$tpl['0']['template']]['template'];
                 if( $function )
                 {
-                    $t = new $function( $this->apiurl );
+                    $t = new $function( $this->apiurl, $devel );
                     $t->getPage( $template, $row['url'] );
                     $o = $t->tAll( "http://bit.ly/" . $row['short'] );
                     if( $o )

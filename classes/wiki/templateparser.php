@@ -6,14 +6,13 @@ class TemplateParser
     private $w;
     protected $array;
     private $pages;
+    protected $devel;
 
-    public function __construct( $url )
+    public function __construct( $url, $devel = 0 )
     {
         $this->w = new extended;
-        if( $url )
-            $this->w->url = $url;
-        else
-            $this->w->url = 'http://it.wikipedia.org/w/api.php';
+        $this->w->url = $url;
+        $this->devel = $devel;
     }
 
     protected function c( $field, $pre = "", $post = "", $e = "" )
