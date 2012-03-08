@@ -5,6 +5,15 @@ require_once( __ROOT__ . "/classes/wiki/templateparser.php" );
 
 class OperaArte extends TemplateParser
 {
+
+    private function opera()
+    {
+        if( strtolower( $this->array['Opera'] ) == "scultura" )
+            return "una #sclutura";
+        if( strtolower( $this->array['Opera'] ) == "dipinto" )
+            return "un #dipinto";
+    }
+
     public function tAll( $s )
     {
         $a = Array();
@@ -13,6 +22,7 @@ class OperaArte extends TemplateParser
             array_push( $a, trim( $this->tArtista( $s ) ) );
             array_push( $a, trim( $this->tMateriale( $s ) ) );
             array_push( $a, trim( $this->tTecnica( $s ) ) );
+            array_push( $a, trim( $this->tAltezza( $s ) ) );
         }
         return array_filter( $a );
     }
@@ -21,6 +31,12 @@ class OperaArte extends TemplateParser
     {
         if( $this->array['Tecnica'] )
             return "\"" . $this->array['Titolo'] . "\" è un dipinto #" . $this->array['Tecnica'] . ". #sapevatelo $s";
+    }
+
+    public function tAltezza( $s )
+    {
+        if( $this->array['Altezza'] )
+            return "\"" . $this->array['Titolo'] . "\" è " . $this->opera() . " alt" . ($this->array['Opera'] == "dipinto" ? "o":"a") . " " . $this->array['Altezza'] . " #cm. #sapevatelo $s";
     }
 
     public function tMateriale( $s )
@@ -32,7 +48,7 @@ class OperaArte extends TemplateParser
     public function tArtista( $s )
     {
         if( $this->array['Artista'] )
-            return "\"" . $this->array['Titolo'] . "\" è un'opera d'Arte di #" . $this->array['Artista'] . ". #sapevatelo $s";
+            return "\"" . $this->array['Titolo'] . "\" è " . $this->opera() . " di #" . $this->array['Artista'] . ". #sapevatelo $s";
     }
 }
 ?>
