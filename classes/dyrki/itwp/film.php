@@ -7,7 +7,7 @@ class Film extends TemplateParser
 {
     public function tAll( $s )
     {
-        if( $this->array['titoloitaliano'] )
+        if( $this->array['Titoloitaliano'] )
         {
             $a = Array();
             array_push( $a, trim( $this->tAnno( $s ) ) );
@@ -21,43 +21,43 @@ class Film extends TemplateParser
 
     public function tAnno( $s )
     {
-        if( $this->array['annouscita'] )
-            return "\"" . $this->array['titoloitaliano'] . "\" è un #film del #" . $this->array['annouscita'] . ". #sapevatelo $s";
+        if( $this->array['Annouscita'] )
+            return "\"" . $this->array['Titoloitaliano'] . "\" è un #film del #" . $this->array['Annouscita'] . ". #sapevatelo $s";
     }
 
     public function tGenere( $s )
     {
-        if( $this->array['genere'] )
-            return "\"" . $this->array['titoloitaliano'] . "\" è un #film #" . $this->array['genere'] . ". #sapevatelo $s";
+        if( $this->array['Genere'] )
+            return "\"" . $this->array['Titoloitaliano'] . "\" è un #film #" . $this->array['Genere'] . ". #sapevatelo $s";
     }
 
     public function tDurata( $s )
     {
-        if( $this->array['durata'] )
-            return "La #durata del #film \"" . $this->array['titoloitaliano'] . "\" è di #" . $this->array['durata'] . ". #sapevatelo $s";
+        if( $this->array['Durata'] )
+            return "La #durata del #film \"" . $this->array['Titoloitaliano'] . "\" è di #" . $this->array['Durata'] . ". #sapevatelo $s";
     }
 
     public function tRegista( $s )
     {
-        if( $this->array['regista'] )
-            if( preg_match( "/,/i", $this->array['regista'] ) || preg_match( "/ e /i", $this->array['regista'] ) )
-                return "I #registi del #film \"" . $this->array['titoloitaliano'] . "\" sono " . $this->array['regista'] . ". #sapevatelo $s";
+        if( $this->array['Regista'] )
+            if( preg_match( "/,/i", $this->array['Regista'] ) || preg_match( "/ e /i", $this->array['Regista'] ) )
+                return "I #registi del #film \"" . $this->array['Titoloitaliano'] . "\" sono " . $this->array['Regista'] . ". #sapevatelo $s";
             else
-                return "Il #regista del #film \"" . $this->array['titoloitaliano'] . "\" è " . $this->array['regista'] . ". #sapevatelo $s";
+                return "Il #regista del #film \"" . $this->array['Titoloitaliano'] . "\" è " . $this->array['Regista'] . ". #sapevatelo $s";
     }
 
     public function tAttori( $s )
     {
         $out = Array();
-        if( $this->array['attori'] )
+        if( $this->array['Attori'] )
         {
-            $attori = explode( "*", $this->array['attori'] );
+            $attori = explode( "*", $this->array['Attori'] );
             foreach( $attori as $attore )
             {
                 preg_match( "/(.*):(.*)/i", $attore, $m );
                 if( $m[1] && $m[2] )
                 {
-                    $o = trim( $m[1] ) . " ha #interpretato " . trim( $m[2] ) . " nel #film \"" . $this->array['titoloitaliano'] . "\". #sapevatelo $s";
+                    $o = trim( $m[1] ) . " ha #interpretato " . trim( $m[2] ) . " nel #film \"" . $this->array['Titoloitaliano'] . "\". #sapevatelo $s";
                     array_push( $out, trim( $o ) );
                 }
             }
