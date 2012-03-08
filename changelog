@@ -6,7 +6,6 @@ ToDo List
         * Imbarcazione veneziana
         * Barca a vela
         * Museo
-        * Opera d'arte
         * Manoscritto
         * Edificio religioso
         * Composizione
@@ -16,6 +15,7 @@ ToDo List
 
 Version dev-4.2 (expected 15/03/2012)
     * Make c and p available for all classes
+    * itwp.operaarte add initial support
 
 Version 4.1 (07/03/2012)
     * Change twitter library
