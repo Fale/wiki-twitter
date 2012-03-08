@@ -16,6 +16,7 @@ ToDo List
 Version dev-4.2 (expected 15/03/2012)
     * Make c and p available for all classes
     * itwp.operaarte add initial support
+    * itwp.film fix for CaSeS
 
 Version 4.1 (07/03/2012)
     * Change twitter library
