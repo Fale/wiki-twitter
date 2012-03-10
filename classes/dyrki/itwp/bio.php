@@ -8,9 +8,12 @@ class Bio extends TemplateParser
     public function tAll( $s )
     {
         $a = Array();
-        array_push( $a, trim( $this->tBorn( $s ) ) );
-        array_push( $a, trim( $this->tDie( $s ) ) );
-        array_push( $a, trim( $this->tWork( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tBorn( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tDie( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tWork( $s ) ) );
         return array_filter( $a );
     }
 
