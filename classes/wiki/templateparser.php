@@ -12,7 +12,10 @@ class TemplateParser
     {
         $this->w = new extended;
         $this->w->url = $url;
-        $this->devel = $devel;
+        if( $devel )
+            $this->devel = $devel;
+        else
+            $this->devel = "d1000";
     }
 
     protected function c( $field, $pre = "", $post = "", $e = "" )
