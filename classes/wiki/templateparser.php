@@ -8,7 +8,7 @@ class TemplateParser
     private $pages;
     protected $devel;
 
-    public function __construct( $url, $devel = 0 )
+    public function __construct( $url, $devel = "d1000" )
     {
         $this->w = new extended;
         $this->w->url = $url;

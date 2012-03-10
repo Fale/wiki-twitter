@@ -38,7 +38,7 @@ class Dyrki
         array_unshift( $this->tpls, "" );
     }
     
-    public function createTweets( $devel = 0 )
+    public function createTweets( $devel = "d1000" )
     {
         $pages = $this->db->query( "SELECT * FROM "  . $this->prefix . "_pages WHERE `ID` IN (SELECT * FROM (SELECT `page` FROM " . $this->prefix . "_relations WHERE `template` IN (SELECT `ID_template` FROM relations WHERE `ID_account` = '" . $this->id . "') ORDER BY RAND() LIMIT 10) alias);" );
         $out = Array();
