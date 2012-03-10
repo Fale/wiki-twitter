@@ -120,11 +120,16 @@ class DivisioneAmministrativa extends TemplateParser
     public function tAll( $s )
     {
         $a = Array();
-        array_push( $a, trim( $this->tAbitanti( $s ) ) );
-        array_push( $a, trim( $this->tSuperficie( $s ) ) );
-        array_push( $a, trim( $this->tPatrono( $s ) ) );
-        array_push( $a, trim( $this->tZonaSismica( $s ) ) );
-        array_push( $a, trim( $this->tNomeAbitanti( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tAbitanti( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tSuperficie( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tPatrono( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tZonaSismica( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tNomeAbitanti( $s ) ) );
         return array_filter( $a );
     }
 
