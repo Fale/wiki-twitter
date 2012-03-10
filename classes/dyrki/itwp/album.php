@@ -8,10 +8,14 @@ class Album extends TemplateParser
     public function tAll( $s )
     {
         $a = Array();
-        array_push( $a, trim( $this->tArtista( $s ) ) );
-        array_push( $a, trim( $this->tAnno( $s ) ) );
-        array_push( $a, trim( $this->tArtistaAnno( $s ) ) );
-        array_push( $a, trim( $this->tGenere( $s ) ) );
+        if( $this->devel['3'] )
+            array_push( $a, trim( $this->tArtista( $s ) ) );
+        if( $this->devel['3'] )
+            array_push( $a, trim( $this->tAnno( $s ) ) );
+        if( $this->devel['3'] )
+            array_push( $a, trim( $this->tArtistaAnno( $s ) ) );
+        if( $this->devel['3'] )
+            array_push( $a, trim( $this->tGenere( $s ) ) );
         return array_filter( $a );
     }
 
