@@ -10,11 +10,16 @@ class Film extends TemplateParser
         if( $this->array['Titoloitaliano'] )
         {
             $a = Array();
-            array_push( $a, trim( $this->tAnno( $s ) ) );
-            array_push( $a, trim( $this->tGenere( $s ) ) );
-            array_push( $a, trim( $this->tDurata( $s ) ) );
-            array_push( $a, trim( $this->tRegista( $s ) ) );
-            $a = array_merge( $a, $this->tAttori( $s ) );
+            if( $this->devel['1'] )
+                array_push( $a, trim( $this->tAnno( $s ) ) );
+            if( $this->devel['1'] )
+                array_push( $a, trim( $this->tGenere( $s ) ) );
+            if( $this->devel['1'] )
+                array_push( $a, trim( $this->tDurata( $s ) ) );
+            if( $this->devel['1'] )
+                array_push( $a, trim( $this->tRegista( $s ) ) );
+            if( $this->devel['1'] )
+                $a = array_merge( $a, $this->tAttori( $s ) );
             return array_filter( $a );
         }
     }
