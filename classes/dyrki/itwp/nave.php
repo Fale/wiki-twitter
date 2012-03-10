@@ -8,9 +8,12 @@ class Nave extends TemplateParser
     public function tAll( $s )
     {
         $a = Array();
-        array_push( $a, trim( $this->tClasse( $s ) ) );
-        array_push( $a, trim( $this->tOperatore( $s ) ) );
-        array_push( $a, trim( $this->tTipo( $s ) ) );
+        if( $this->devel['3'] )
+            array_push( $a, trim( $this->tClasse( $s ) ) );
+        if( $this->devel['3'] )
+            array_push( $a, trim( $this->tOperatore( $s ) ) );
+        if( $this->devel['3'] )
+            array_push( $a, trim( $this->tTipo( $s ) ) );
         return array_filter( $a );
     }
 
