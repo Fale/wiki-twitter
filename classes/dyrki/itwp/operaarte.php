@@ -19,10 +19,14 @@ class OperaArte extends TemplateParser
         $a = Array();
         if( $this->array['Titolo'] )
         {
-            array_push( $a, trim( $this->tArtista( $s ) ) );
-            array_push( $a, trim( $this->tMateriale( $s ) ) );
-            array_push( $a, trim( $this->tTecnica( $s ) ) );
-            array_push( $a, trim( $this->tAltezza( $s ) ) );
+            if( $this->devel['1'] )
+                array_push( $a, trim( $this->tArtista( $s ) ) );
+            if( $this->devel['1'] )
+                array_push( $a, trim( $this->tMateriale( $s ) ) );
+            if( $this->devel['3'] )
+                array_push( $a, trim( $this->tTecnica( $s ) ) );
+            if( $this->devel['1'] )
+                array_push( $a, trim( $this->tAltezza( $s ) ) );
         }
         return array_filter( $a );
     }
