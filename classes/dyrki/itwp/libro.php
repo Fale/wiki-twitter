@@ -8,12 +8,16 @@ class Libro extends TemplateParser
     public function tAll( $s )
     {
         $a = Array();
-        array_push( $a, trim( $this->tAutore( $s ) ) );
-        array_push( $a, trim( $this->tAnno( $s ) ) );
-        // Not yet stable
-        //array_push( $a, trim( $this->tGenere( $s ) ) );
-        array_push( $a, trim( $this->tAnnoIta( $s ) ) );
-        array_push( $a, trim( $this->tTipo( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tAutore( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tAnno( $s ) ) );
+        if( $this->devel['2'] )
+            array_push( $a, trim( $this->tGenere( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tAnnoIta( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->tTipo( $s ) ) );
         return array_filter( $a );
     }
 
