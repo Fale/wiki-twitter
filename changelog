@@ -18,6 +18,7 @@ Version dev
     * devel - Fix names (Alpha -> Beta, ToDo -> Alpha)
     * itwp.album - Add #album hashtag
     * itwp.album.tAnno - From Beta to Stable
+    * itwp.album.tEtichetta - Add at RC stage
     * itwp.album.tGenere - From Beta to Stable
 
 Version 5.0 (11/03/2012)

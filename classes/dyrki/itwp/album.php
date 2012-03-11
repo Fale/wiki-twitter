@@ -16,6 +16,8 @@ class Album extends TemplateParser
             array_push( $a, trim( $this->tArtistaAnno( $s ) ) );
         if( $this->devel['1'] )
             array_push( $a, trim( $this->tGenere( $s ) ) );
+        if( $this->devel['2'] )
+            array_push( $a, trim( $this->tEtichetta( $s ) ) );
         return array_filter( $a );
     }
 
@@ -29,6 +31,12 @@ class Album extends TemplateParser
     {
         if( $this->array['Genere'] )
             return "\"" . $this->array['Titolo'] . "\" è un #album di #musica #" . $this->array['Genere'] . ". #sapevatelo $s";
+    }
+
+    public function tEtichetta( $s )
+    {
+        if( $this->array['Etichetta'] && $this->array['Etichetta'] != "/" && $this->array['Etichetta'] != "-" )
+            return "\"" . $this->array['Titolo'] . "\" è un #album distribuito da #" . $this->array['Etichetta'] . ". #sapevatelo $s";
     }
 
     public function tArtista( $s )
