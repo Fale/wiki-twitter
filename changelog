@@ -14,6 +14,7 @@ ToDo List
         * Infobox television film
 
 Version dev
+    * bitly - Improve error handling
     * devel - Fix names (Alpha -> Beta, ToDo -> Alpha)
     * itwp.album - Add #album hashtag
     * itwp.album.tAnno - From Beta to Stable

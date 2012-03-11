@@ -13,7 +13,7 @@ if( ( $pid = Cron::lock() ) !== FALSE )
     {
         $p = $source['prefix'];
         echo $p . " ";
-        $pages = $db->query( "SELECT * FROM " . $p . "_pages WHERE short = '' OR short = 'INVALID_LOGIN' OR short = 'RATE_LIMIT_EXCEEDED'" );
+        $pages = $db->query( "SELECT * FROM " . $p . "_pages WHERE short = '' OR short = 'INVALID_LO' OR short = 'RATE_LIMIT' OR short = 'UNKNOWN_ER'" );
         echo "\033[00;32m[ OK ]\033[00m\n";
         $items = count( $pages );
         foreach( $pages as $page )
@@ -23,7 +23,7 @@ if( ( $pid = Cron::lock() ) !== FALSE )
             $r['ID'] = $page['ID'];
             $r['short'] = $bitly->shorten( $source['url'] . $page['url'] );
             echo "\033[00;32m[ OK ]\033[00m\n";
-            if( $r['short'] == "INVALID_LOGIN" || $r['short'] == "RATE_LIMIT_EXCEEDED" )
+            if( $r['short'] == "INVALID_LOGIN" || $r['short'] == "RATE_LIMIT_EXCEEDED" || $r['short'] == "UNKNOWN_ERROR")
                 die();
             $r['short'] = str_replace( "http://bit.ly/", '', $r['short'] );
             $db->update( $r, $p . "_pages", "ID" );
