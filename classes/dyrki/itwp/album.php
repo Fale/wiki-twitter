@@ -10,7 +10,7 @@ class Album extends TemplateParser
         $a = Array();
         if( $this->devel['3'] )
             array_push( $a, trim( $this->tArtista( $s ) ) );
-        if( $this->devel['3'] )
+        if( $this->devel['1'] )
             array_push( $a, trim( $this->tAnno( $s ) ) );
         if( $this->devel['3'] )
             array_push( $a, trim( $this->tArtistaAnno( $s ) ) );
