@@ -9,7 +9,8 @@
             /*<![CDATA[*/
                 th {background-color: #DDDDFF}
                 td {background-color: #EEEEFF}
-                table {width:100%;}
+                tr#d1000 {color: red; font-weight: bold}
+                table {width:100%}
                 th.c1 {width:20%}
             /*]]>*/
         </style>
@@ -34,7 +35,7 @@
                                'd1100', 'd1101', 'd1110', 'd1111' );
                 foreach( $vals as $val )
                 {
-                    echo"           <tr>";
+                    echo"           <tr id=\"" . $val . "\">";
                     echo"               <td>" . $val . "</td>";
                     echo"               <td>" . ($val['1'] ? "S&igrave;":"No") . "</td>";
                     echo"               <td>" . ($val['2'] ? "S&igrave;":"No") . "</td>";
