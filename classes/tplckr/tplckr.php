@@ -1,6 +1,7 @@
 <?php
 
 define( '__ROOT__', dirname( dirname( dirname( __FILE__ ) ) ) ); 
+define( '__HOME__', dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) ); 
 ### SETTINGS ###
 require_once( __ROOT__ . "/settings/db.php" );
 
@@ -18,6 +19,7 @@ class TplCkr
     private $apiurl;
     private $tweets;
     private $debug;
+    private $file;
 
     public function __construct( $template, $debug = 0 )
     {
@@ -30,16 +32,22 @@ class TplCkr
         $this->prefix = $q['0']['prefix'];
         $this->apiurl = $q['0']['apiurl'];
         $this->url = $q['0']['url'];
+        $this->file = fopen( __HOME__ . "/public_html/" . $template . ".html", 'w' );
     }
     
-    public function checkTemplate( $toHtml = 1, $v = 1, $devel = "d1000" )
+    public function checkTemplate( $html = 1, $v = 1, $devel = "d1000" )
     {
         $function = $this->tpl['function'];
         $template = $this->tpl['template'];
         $t = new $function( $this->apiurl, $devel );
         $pages = $this->db->query( "SELECT * FROM " . $this->prefix . "_pages WHERE ID IN (SELECT `page` FROM " . $this->prefix . "_relations WHERE `template` = '" . $this->tpl['ID_template'] . "');" );
-        $out = Array();
-        array_unshift( $out, $t->pHead() );
+        if( $html )
+            fwrite( $this->file, $this->HtmlHeader( $t->pHead() ) );
+        else
+        {
+            $out = Array();
+            array_unshift( $out, $t->pHead() );
+        }
         $tot = count( $pages );
         $p = 0;
         foreach( $pages as $page )
@@ -50,31 +58,53 @@ class TplCkr
             $t->getPage( $template, $page['url'], 0 );
             $pg = $t->pAll();
             array_unshift( $pg, $page['url'] );
-            array_push( $out, $pg );
+            if( $html )
+                fwrite( $this->file, $this->HtmlContent( $pg ) );
+            else
+                array_push( $out, $pg );
             if( $v )
                 echo "\033[00;32m[ OK ]\033[00m\n";
         }
         if( $html )
-            return toHtml( $out );
+        {
+            fwrite( $this->file, $this->HtmlFooter() );
+            fclose( $this->file );
+        }
         else
             return $out;
     }
 
-    private function toHtml( $array )
+    private function HtmlHeader( $array )
     {
-        $out = "<table>";
-        foreach( $array as $id => $row )
+        $out = "<table style=\"width:100%\">";
+        $out.= "<tr>";
+        foreach( $array as $cell )
         {
-            $out.= "<tr>";
-            foreach( $row as $cell )
-            {
-                $out.= ( !$id ? "<th>" : "<td>" );
-                $out.= $cell;
-                $out.= ( !$id ? "</th>" : "</td>" );
-            }
-            $out.= "</tr>";
+            $out.= "<th>";
+            $out.= $cell;
+            $out.= "</th>";
         }
-        $out.= "</table>";
+        $out.= "</tr>";
+        return $out;
+    }
+
+    private function HtmlContent( $array )
+    {
+        $out.= "<tr>";
+        foreach( $array as $id => $cell )
+        {
+            $out.= "<td>";
+            $out.= ( $id ? $cell : "<a href='" . $this->url . $cell . "'>" . $cell . "</a>" );
+            $out.= "</td>";
+        }
+        $out.= "</tr>";
+        return $out;
+    }
+
+    private function HtmlFooter()
+    {
+        $out = "</table>";
+        return $out;
     }
 }
 ?>

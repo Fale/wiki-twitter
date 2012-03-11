@@ -16,6 +16,6 @@ if( ! $args['template'] )
 
 $fp = fopen( "../public_html/" . $args['template'] . ".html", 'w');
 $tplckr = new TplCkr( $args['template'] );
-fwrite( $fp, $tplckr->checkTemplate() );
+fwrite( $fp, $tplckr->checkTemplate( 1 ) );
 fclose( $fp );
 ?>
