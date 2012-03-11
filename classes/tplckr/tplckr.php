@@ -40,10 +40,13 @@ class TplCkr
         $pages = $this->db->query( "SELECT * FROM " . $this->prefix . "_pages WHERE ID IN (SELECT `page` FROM " . $this->prefix . "_relations WHERE `template` = '" . $this->tpl['ID_template'] . "');" );
         $out = Array();
         array_unshift( $out, $t->pHead() );
+        $tot = count( $pages );
+        $p = 0;
         foreach( $pages as $page )
         {
+            $p = $p + 1;
             if( $v )
-                echo $page['url'] . " ";
+                echo "(" . $p . "/" . $tot . ") " . $page['url'] . " ";
             $t->getPage( $template, $page['url'], 0 );
             $pg = $t->pAll();
             array_unshift( $pg, $page['url'] );
