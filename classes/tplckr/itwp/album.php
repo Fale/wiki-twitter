@@ -13,6 +13,8 @@ class Album extends TemplateParser
             array_push( $a, "Anno" );
         if( $this->devel['1'] )
             array_push( $a, "Genere" );
+        if( $this->devel['1'] )
+            array_push( $a, "Tipo" );
         return $a;
     }
 
@@ -23,7 +25,21 @@ class Album extends TemplateParser
             array_push( $a, trim( $this->pAnno( $s ) ) );
         if( $this->devel['1'] )
             array_push( $a, trim( $this->pGenere( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->pTipo( $s ) ) );
         return $a;
+    }
+
+    public function pTipo()
+    {
+        if( $this->array['Tipo album'] )
+        {
+            $tipi = Array( "studio", "singolo", "ep", "video", "raccolta", "compilation", "cover", "studio, live", "studio e live", "colonna sonora", "live", "vivo", "ep live", "video live", "video compilation", "video compilation live", "demo" );
+            foreach( $tipi as $tipo)
+                if( strtolower( $this->array['Tipo album'] ) == $tipo )
+                    return "ok";
+            return $this->array['Anno'];
+        }
     }
 
     public function pAnno()
