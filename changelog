@@ -14,6 +14,10 @@ ToDo List
         * Infobox television film
 
 Version dev
+    * devel - Fix names (Alpha -> Beta, ToDo -> Alpha)
+    * itwp.album - Add #album hashtag
+    * itwp.album.tAnno - From 3 to 1
+    * itwp.album.tGenere - From 3 to 1
 
 Version 5.0 (11/03/2012)
     * itwp.operaarte add tMateriale

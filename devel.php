@@ -25,8 +25,8 @@
             <tr>
                 <th class="c1">Stable</th>
                 <th class="c1">RC</th>
+                <th class="c1">Beta</th>
                 <th class="c1">Alpha</th>
-                <th class="c1">ToDo</th>
             </tr>
             <?php
                 $vals = Array( 'd0000', 'd0001', 'd0010', 'd0011', 
