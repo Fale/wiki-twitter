@@ -18,7 +18,9 @@ Version dev (expected 15/03/2012)
     * itwp.operaarte add tTecnica
     * itwp.operaarte add tAltezza
     * Create the base for a rolling devel
-    * devel add devel.html
+    * devel add devel.php
+    * devel remove status.html
+    * devel add status.php
     * devel implement it in all classes
     * git suppressing all branch Y.x
     * git create a stable branch
