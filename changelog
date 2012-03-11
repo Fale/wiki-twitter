@@ -20,6 +20,7 @@ Version dev
     * itwp.album.tAnno - From Beta to Stable
     * itwp.album.tEtichetta - Add at RC stage
     * itwp.album.tGenere - From Beta to Stable
+    * tplckr - Add (only for Album now)
 
 Version 5.0 (11/03/2012)
     * itwp.operaarte add tMateriale
