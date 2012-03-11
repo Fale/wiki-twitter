@@ -22,25 +22,25 @@ class Album extends TemplateParser
     public function tArtistaAnno( $s )
     {
         if( $this->array['Artista'] )
-            return "\"" . $this->array['Titolo'] . "\" è un album pubblicato nel #" . $this->array['Anno'] . " da #" . $this->array['Artista'] . ". #sapevatelo $s";
+            return "\"" . $this->array['Titolo'] . "\" è un #album pubblicato nel #" . $this->array['Anno'] . " da #" . $this->array['Artista'] . ". #sapevatelo $s";
     }
 
     public function tGenere( $s )
     {
         if( $this->array['Genere'] )
-            return "\"" . $this->array['Titolo'] . "\" è un album #" . $this->array['Genere'] . ". #sapevatelo $s";
+            return "\"" . $this->array['Titolo'] . "\" è un #album #" . $this->array['Genere'] . ". #sapevatelo $s";
     }
 
     public function tArtista( $s )
     {
         if( $this->array['Artista'] )
-            return "\"" . $this->array['Titolo'] . "\" è un album di #" . $this->array['Artista'] . ". #sapevatelo $s";
+            return "\"" . $this->array['Titolo'] . "\" è un #album di #" . $this->array['Artista'] . ". #sapevatelo $s";
     }
 
     public function tAnno( $s )
     {
         if( $this->array['Anno'] )
-            return "\"" . $this->array['Titolo'] . "\" è un album pubblicato nel #" . $this->array['Anno'] . ". #sapevatelo $s";
+            return "\"" . $this->array['Titolo'] . "\" è un #album pubblicato nel #" . $this->array['Anno'] . ". #sapevatelo $s";
     }
 }
 
