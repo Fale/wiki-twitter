@@ -20,7 +20,7 @@
         <table summary="itwp">
             <tr>
                 <th rowspan="2" class="c1">Class</th>
-                <th colspan="4">functions</th>
+                <th colspan="4">Functions</th>
             </tr>
             <tr>
                 <th class="c1">Stable</th>
