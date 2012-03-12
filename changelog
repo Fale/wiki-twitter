@@ -27,6 +27,8 @@ Version dev
     * tplckr.itwp.album.pTipo - Created
     * tplckr.itwp.film.pAnnouscita - Created
     * tplckr.itwp.film.pDurata - Created
+    * tplckr.itwp.film.pGenere - Created
+    * tplckr.itwp.film.pRatio - Created
     * tplckr.itwp.film.pTipoaudio - Created
     * tplckr.itwp.film.pTipocolore - Created
 

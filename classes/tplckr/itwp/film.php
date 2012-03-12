@@ -14,6 +14,10 @@ class Film extends TemplateParser
         if( $this->devel['1'] )
             array_push( $a, "Durata" );
         if( $this->devel['1'] )
+            array_push( $a, "Genere" );
+        if( $this->devel['1'] )
+            array_push( $a, "Ratio" );
+        if( $this->devel['1'] )
             array_push( $a, "Tipoaudio" );
         if( $this->devel['1'] )
             array_push( $a, "Tipocolore" );
@@ -27,6 +31,10 @@ class Film extends TemplateParser
             array_push( $a, trim( $this->pAnnouscita( $s ) ) );
         if( $this->devel['1'] )
             array_push( $a, trim( $this->pDurata( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->pGenere( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->pRatio( $s ) ) );
         if( $this->devel['1'] )
             array_push( $a, trim( $this->pTipoaudio( $s ) ) );
         if( $this->devel['1'] )
@@ -50,6 +58,24 @@ class Film extends TemplateParser
                 return "ok";
             else
                 return $this->array['Durata'];
+    }
+
+    public function pGenere()
+    {
+        $generi = Array( "Animazione", "Avventura", "Azione", "Bellico", "Biblico", "Biografico", "Brillante", "Catastrofico", "Comico", "Commedia", "Documentario", "Drammatico", "Epico", "Erotico", "Fantascienza", "Fantastico", "Fiabesco", "Gangster", "Giallo", "Grottesco", "Guerra", "Horror", "Musicale", "Noir", "Poliziesco", "Pornografico", "Religioso", "Romantico", "Satirico", "Sentimentale", "Spionaggio", "Sportivo", "Storico", "Supereroi", "Terrore", "Thriller", "Western" );
+        foreach( $generi as $genere)
+            if( ucfirst( strtolower( $this->array['Genere'] ) ) == $genere )
+                return "ok";
+        return $this->array['Genere'];
+    }
+
+    public function pRatio()
+    {
+        if( $this->array['Ratio'] )
+            if( preg_match( "/[0-9]{1,2}:[0-9]{1,2}/", $this->array['Ratio'] ) )
+                return "ok";
+            else
+                return $this->array['Ratio'];
     }
 
     public function pTipoaudio()

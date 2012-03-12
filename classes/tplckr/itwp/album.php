@@ -38,7 +38,7 @@ class Album extends TemplateParser
             foreach( $tipi as $tipo)
                 if( strtolower( $this->array['Tipo album'] ) == $tipo )
                     return "ok";
-            return $this->array['Anno'];
+            return $this->array['Tipo album'];
         }
     }
 
