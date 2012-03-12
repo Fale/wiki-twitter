@@ -12,6 +12,8 @@ class Film extends TemplateParser
         if( $this->devel['1'] )
             array_push( $a, "Annouscita" );
         if( $this->devel['1'] )
+            array_push( $a, "Cortometraggio" );
+        if( $this->devel['1'] )
             array_push( $a, "Durata" );
         if( $this->devel['1'] )
             array_push( $a, "Genere" );
@@ -29,6 +31,8 @@ class Film extends TemplateParser
         $a = Array();
         if( $this->devel['1'] )
             array_push( $a, trim( $this->pAnnouscita( $s ) ) );
+        if( $this->devel['1'] )
+            array_push( $a, trim( $this->pCortometraggio( $s ) ) );
         if( $this->devel['1'] )
             array_push( $a, trim( $this->pDurata( $s ) ) );
         if( $this->devel['1'] )
@@ -49,6 +53,15 @@ class Film extends TemplateParser
                 return "ok";
             else
                 return $this->array['Annouscita'];
+    }
+
+    public function pCortometraggio()
+    {
+        if( $this->array['Cortometraggio'] )
+            if( $this->array['Cortometraggio'] == "true" )
+                return "ok";
+            else
+                return $this->array['Cortometraggio'];
     }
 
     public function pDurata()
