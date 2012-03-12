@@ -35,7 +35,7 @@ class Film extends TemplateParser
             array_push( $a, trim( $this->pCortometraggio( $s ) ) );
         if( $this->devel['1'] )
             array_push( $a, trim( $this->pDurata( $s ) ) );
-        if( $this->devel['1'] )
+        if( $this->devel['2'] )
             array_push( $a, trim( $this->pGenere( $s ) ) );
         if( $this->devel['1'] )
             array_push( $a, trim( $this->pRatio( $s ) ) );
