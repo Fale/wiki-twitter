@@ -21,6 +21,7 @@ Version dev
     * itwp.album.tEtichetta - Add at RC stage
     * itwp.album.tGenere - From Beta to Stable
     * tplckr - Create a template checker
+    * tplckr.status - Add a status file for itwp
     * tplckr.itwp.album.pTipo - Created
     * tplckr.itwp.album.pAnno - Created
     * tplckr.itwp.album.pGenere - Created
