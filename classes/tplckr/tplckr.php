@@ -8,6 +8,7 @@ require_once( __ROOT__ . "/settings/db.php" );
 ### CLASSES ###
 require_once( __ROOT__ . "/classes/db.php" );
 require_once( __ROOT__ . "/classes/tplckr/itwp/album.php" );
+require_once( __ROOT__ . "/classes/tplckr/itwp/film.php" );
 
 class TplCkr
 {
