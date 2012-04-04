@@ -21,6 +21,7 @@ class TplCkr
     private $tweets;
     private $debug;
     private $file;
+    private $fileshort;
 
     public function __construct( $template, $debug = 0 )
     {
@@ -34,6 +35,7 @@ class TplCkr
         $this->apiurl = $q['0']['apiurl'];
         $this->url = $q['0']['url'];
         $this->file = fopen( __HOME__ . "/public_html/" . $template . ".html", 'w' );
+        $this->fileshort = fopen( __HOME__ . "/public_html/" . $template . "-short.html", 'w' );
     }
     
     public function checkTemplate( $html = 1, $v = 1, $devel = "d1000" )
@@ -43,7 +45,10 @@ class TplCkr
         $t = new $function( $this->apiurl, $devel );
         $pages = $this->db->query( "SELECT * FROM " . $this->prefix . "_pages WHERE ID IN (SELECT `page` FROM " . $this->prefix . "_relations WHERE `template` = '" . $this->tpl['ID_template'] . "');" );
         if( $html )
+        {
             fwrite( $this->file, $this->HtmlHeader( $t->pHead() ) );
+            fwrite( $this->fileshort, $this->HtmlHeader( $t->pHead() ) );
+        }
         else
         {
             $out = Array();
@@ -58,9 +63,20 @@ class TplCkr
                 echo "(" . $p . "/" . $tot . ") " . $page['url'] . " ";
             $t->getPage( $template, $page['url'], 0 );
             $pg = $t->pAll();
+            if( $html )
+            {
+                $ok = 1;
+                foreach( $pg as $pgi )
+                    if( $pgi != "ok" && $pgi != "" )
+                        $ok = 0;
+            }
             array_unshift( $pg, $page['url'] );
             if( $html )
+            {
                 fwrite( $this->file, $this->HtmlContent( $pg ) );
+                if( !$ok )
+                    fwrite( $this->fileshort, $this->HtmlContent( $pg ) );
+            }
             else
                 array_push( $out, $pg );
             if( $v )
@@ -69,7 +85,9 @@ class TplCkr
         if( $html )
         {
             fwrite( $this->file, $this->HtmlFooter() );
+            fwrite( $this->fileshort, $this->HtmlFooter() );
             fclose( $this->file );
+            fclose( $this->fileshort );
         }
         else
             return $out;
