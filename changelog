@@ -20,6 +20,14 @@ Version dev
     * itwp.album.tAnno - From Beta to Stable
     * itwp.album.tEtichetta - Add at RC stage
     * itwp.album.tGenere - From Beta to Stable
+    * itwp.edificioreligioso.tCitta - Created
+    * itwp.edificioreligioso.tCostruzione - Created
+    * itwp.edificioreligioso.tConsacrazione - Created
+    * itwp.edificioreligioso.tStile - Created
+    * itwp.personaggio.tNome - Created
+    * itwp.personaggio.tAttore - Created
+    * itwp.santo.tBornDie - Created
+    * itwp.santo.tReligioni - Created
     * tplckr - Create a template checker
     * tplckr.status - Add a status file for itwp
     * tplckr.itwp.album.pAnno - Created
@@ -32,14 +40,7 @@ Version dev
     * tplckr.itwp.film.pRatio - Created
     * tplckr.itwp.film.pTipoaudio - Created
     * tplckr.itwp.film.pTipocolore - Created
-    * itwp.edificioreligioso.tCitta - Created
-    * itwp.edificioreligioso.tCostruzione - Created
-    * itwp.edificioreligioso.tConsacrazione - Created
-    * itwp.edificioreligioso.tStile - Created
-    * itwp.personaggio.tNome - Created
-    * itwp.personaggio.tAttore - Created
-    * itwp.santo.tBornDie - Created
-    * itwp.santo.tReligioni - Created
+    * tplckr.itwp.santo.pVenerato - Created
 
 Version 5.0 (11/03/2012)
     * itwp.operaarte add tMateriale
