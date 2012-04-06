@@ -5,46 +5,45 @@ require_once( __ROOT__ . "/classes/wiki/templateparser.php" );
 
 class EdificioReligioso extends TemplateParser
 {
-
     public function tAll( $s )
     {
         $a = Array();
         if( $this->array['Titolo'] )
         {
-            if( $this->devel['1'] )
-                array_push( $a, trim( $this->tArtista( $s ) ) );
-            if( $this->devel['1'] )
-                array_push( $a, trim( $this->tMateriale( $s ) ) );
             if( $this->devel['3'] )
-                array_push( $a, trim( $this->tTecnica( $s ) ) );
-            if( $this->devel['1'] )
-                array_push( $a, trim( $this->tAltezza( $s ) ) );
+                array_push( $a, trim( $this->tCitta( $s ) ) );
+            if( $this->devel['3'] )
+                array_push( $a, trim( $this->tCostruzione( $s ) ) );
+            if( $this->devel['3'] )
+                array_push( $a, trim( $this->tConsacrazione( $s ) ) );
+            if( $this->devel['3'] )
+                array_push( $a, trim( $this->tStile( $s ) ) );
         }
         return array_filter( $a );
     }
 
-    public function tTecnica( $s )
+    public function tCitta( $s )
     {
-        if( $this->array['Tecnica'] )
-            return "\"" . $this->array['Titolo'] . "\" è un dipinto #" . $this->array['Tecnica'] . ". #sapevatelo $s";
+        if( $this->array['Città'] && $this->array['Nome'] && $this->array['Religione'] )
+            return "\"" . $this->array['Nome'] . "\" è un edificio di religione #" . $this->array['Religione'] . " a #" . $this->array['Città'] . ". #sapevatelo $s";
     }
 
-    public function tAltezza( $s )
+    public function tCostruzione( $s )
     {
-        if( $this->array['Altezza'] )
-            return "\"" . $this->array['Titolo'] . "\" è " . $this->opera() . " alt" . ($this->array['Opera'] == "dipinto" ? "o":"a") . " " . $this->array['Altezza'] . " #cm. #sapevatelo $s";
+        if( $this->array['Nome'] && $this->array['InizioCostr'] && $this->array['FineCostr'] )
+            return "\"" . $this->array['Nome'] . "\" è stata costruita tra il " . $this->array['InizioCostr'] . " e il " . $this->array['FineCostr'] . ". #sapevatelo $s";
     }
 
-    public function tMateriale( $s )
+    public function tConsacrazione( $s )
     {
-        if( $this->array['Materiale'] )
-            return "\"" . $this->array['Titolo'] . "\" è una scultura in #" . $this->array['Materiale'] . ". #sapevatelo $s";
+        if( $this->array['Nome'] && $this->array['AnnoConsacr'] )
+            return "\"" . $this->array['Nome'] . "\" è stata consacrata nel #" . $this->array['AnnoConsacr'] . ". #sapevatelo $s";
     }
 
-    public function tArtista( $s )
+    public function tStile( $s )
     {
-        if( $this->array['Artista'] )
-            return "\"" . $this->array['Titolo'] . "\" è " . $this->opera() . " di #" . $this->array['Artista'] . ". #sapevatelo $s";
+        if( $this->array['StileArchitett'] && $this->array['Nome'] )
+            return "\"" . $this->array['Nome'] . "\" è in stile #" . $this->array['StileArchitett'] . ". #sapevatelo $s";
     }
 }
 ?>
