@@ -32,7 +32,12 @@ Version dev
     * tplckr.itwp.film.pRatio - Created
     * tplckr.itwp.film.pTipoaudio - Created
     * tplckr.itwp.film.pTipocolore - Created
-    * itwp.edificioreligioso - Created
+    * itwp.edificioreligioso.tCitta - Created
+    * itwp.edificioreligioso.tCostruzione - Created
+    * itwp.edificioreligioso.tConsacrazione - Created
+    * itwp.edificioreligioso.tStile - Created
+    * itwp.personaggio.tNome - Created
+    * itwp.personaggio.tAttore - Created
 
 Version 5.0 (11/03/2012)
     * itwp.operaarte add tMateriale
