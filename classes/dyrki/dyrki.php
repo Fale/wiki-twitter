@@ -15,6 +15,7 @@ require_once( __ROOT__ . "/classes/dyrki/itwp/libro.php" );
 require_once( __ROOT__ . "/classes/dyrki/itwp/nave.php" );
 require_once( __ROOT__ . "/classes/dyrki/itwp/operaarte.php" );
 require_once( __ROOT__ . "/classes/dyrki/itwp/personaggio.php" );
+require_once( __ROOT__ . "/classes/dyrki/itwp/santo.php" );
 
 class Dyrki
 {

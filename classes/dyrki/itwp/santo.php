@@ -3,49 +3,28 @@ define( '__ROOT__', dirname( dirname( dirname( __FILE__ ) ) ) );
 ### CLASSES ###
 require_once( __ROOT__ . "/classes/wiki/templateparser.php" );
 
-class Bio extends TemplateParser
+class Sandto extends TemplateParser
 {
     public function tAll( $s )
     {
         $a = Array();
-        if( $this->devel['1'] )
-            array_push( $a, trim( $this->tBorn( $s ) ) );
-        if( $this->devel['1'] )
-            array_push( $a, trim( $this->tDie( $s ) ) );
-        if( $this->devel['1'] )
-            array_push( $a, trim( $this->tWork( $s ) ) );
+        if( $this->devel['3'] )
+            array_push( $a, trim( $this->tBornDie( $s ) ) );
+        if( $this->devel['3'] )
+            array_push( $a, trim( $this->tReligioni( $s ) ) );
         return array_filter( $a );
     }
 
-    public function fullName()
+    public function tBornDie( $s )
     {
-        $o = "";
-        if( $this->array['Titolo'] )
-            $o .= $this->array['Titolo'] . " ";
-        if( $this->array['Nome'] )
-            $o .= $this->array['Nome'] . " ";
-        if( $this->array['Cognome'] )
-            $o .= "#" . $this->array['Cognome'] . " ";
-        return trim( $o );
+        if( $this->array['Nato'] )
+            return $this->array['Nome'] . " è nato nel #" . $this->array['Nato'] . "e morto nel #" . $this->array['Morto'] . ". #sapevatelo $s";
     }
 
-    public function tBorn( $s )
+    public function tReligioni( $s )
     {
-        if( $this->array['AnnoNascita'] )
-            return $this->fullName() . " è nat" . ($this->array['Sesso'] == "F" ? "a":"o") . $this->c( 'GiornoMeseNascita', "il ", "", "nel" ) . " #" . $this->array['AnnoNascita'] . $this->c( 'LuogoNascita', "a #" ) . ". #sapevatelo $s";
-    }
-
-    public function tDie( $s )
-    {
-        $this->array['AnnoMorte'] = str_replace( "?", "", $this->array['AnnoMorte'] );
-        if( $this->array['AnnoMorte'] )
-            return $this->fullName() . " è mort" . ($this->array['Sesso'] == "F" ? "a":"o") . $this->c( 'GiornoMeseMorte', "il ", "", "nel" ) . " #" . $this->array['AnnoMorte'] . $this->c( 'LuogoMorte', "a #" ) . ". #sapevatelo $s";
-    }
-
-    public function tWork( $s )
-    {
-        if( $this->array['Attività'] )
-            return $this->fullName() . $this->p( "AnnoMorte", "fu", "è" ) . " un" . ($this->array['Sesso'] == "F" ? "a":"") . " #" . $this->array['Attività'] . $this->c( 'Nazionalità', "#" ) . ". #sapevatelo $s";
+        if( $this->array['Venerato da'] )
+            return $this->array['Nome'] . $this->p( "Morto", "fu", "è" ) . " un santo venerato da #" . $this->array['Venerato da'] . ". #sapevatelo $s";
     }
 }
 
