@@ -44,6 +44,31 @@ class Tools
         $q = $this->db->insert( $r, "templates" );
     }
 
+    public function getTweets( $args )
+    {
+        require_once( "classes/twitter/tmhOAuth.php" );
+        require_once( "settings/app.php" );
+
+        $users = $this->db->query( "SELECT `name`, `token`, `secret` FROM `accounts` WHERE `name`='" . $args['1'] . "';" );
+    return( $users );
+        $tmhOAuth = new tmhOAuth( array(
+            'consumer_key'    => $twitterKey,
+            'consumer_secret' => $twitterSecret,
+            'user_token' => $user['token'],
+            'user_secret' => $user['secret']
+        ) );
+
+        $method = "https://userstream.twitter.com/2/user.json";
+        $params = array(
+            // parameters go here
+        );
+        $tmhOAuth->streaming_request('POST', $method, $params, 'my_streaming_callback', false);
+
+        // output any response we get back AFTER the Stream has stopped -- or errors
+        tmhUtilities::pr($tmhOAuth);
+    }
+
+
     public function pages( $args )
     {
         $src = $this->db->query( "SELECT * FROM `sources` WHERE `ID_source` = '" . $args['source'] . "';" );

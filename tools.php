@@ -12,6 +12,7 @@ $man = "Uso: php tools.php COMMAND [parameters]
     
 COMMANDS:
  -account                   create account
+ -getTweets                 get tweet for a precise user
  -follow                    follow user
  -pages                     manage pages
  *account add               add an account
@@ -44,6 +45,12 @@ switch( $args[0] )
             die( "Uso: php tools.php pages --source=# [--template]\n" );
         else
             $tools->pages( $args );
+        break;
+    case "getTweets":
+        if( !$args['source'] )
+            die( "Uso: php tools.php getTweets --source=#\n" );
+        else
+            $tools->getTweets( $args );
         break;
     case "source":
         if( $args['1'] == "add" )
